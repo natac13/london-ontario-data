@@ -8,7 +8,7 @@ export default class App extends Component {
     render() {
         return (
             <div >
-                HELLO LONDON!
+                HELLO LONDON! From component App
             </div>
         );
     }

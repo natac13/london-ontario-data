@@ -12,7 +12,8 @@
     "build": "cross-env NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --color",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "csv": "babel-node app/resources/utils/converter.js"
   },
   "repository": {
     "type": "git",
@@ -78,6 +79,7 @@
     "chai-immutable": "1.5.3",
     "commitizen": "2.4.6",
     "cross-env": "1.0.6",
+    "csvtojson": "0.5.1",
     "cz-conventional-changelog": "1.1.5",
     "eslint": "1.10.3",
     "eslint-plugin-babel": "3.0.0",
