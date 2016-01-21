@@ -13,7 +13,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "commit": "git-cz",
-    "csv": "babel-node app/resources/utils/converter.js"
+    "lint": "eslint app/",
+    "csvtojson": "babel-node app/resources/utils/converter.js"
   },
   "repository": {
     "type": "git",
