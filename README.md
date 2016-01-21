@@ -23,10 +23,19 @@ npm test
 npm run test:watch
 ```
 
+### Contributing
+Please use commitizen for you git commits. I have found this forces me to think about my commits and write meaningful versions.
+There is a prompt which will guide you thought the process. Please not the short description (2nd prompt) is cropped at 100 chars, including the scope (1st prompt). Therefore the body of your commit is in the long description (3rd prompt). To close an open issue use `close [issueNumber]` in the closing section (4th prompt).
+```
+// after staging modifications, instead of running git commit
+// please use
+npm run commit
+```
+
 
 ### Deploy to Github pages
 ```
-npm deploy
+npm run deploy
 ```
 
 ## Licence
