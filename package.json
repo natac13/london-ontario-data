@@ -14,7 +14,8 @@
     "deploy": "gh-pages -d build",
     "commit": "git-cz",
     "lint": "eslint app/",
-    "csvtojson": "babel-node app/resources/utils/converter.js"
+    "csvtojson": "babel-node app/resources/utils/converter.js",
+    "scrap" : "babel-node app/resources/utils/scrapper.js"
   },
   "repository": {
     "type": "git",
@@ -100,7 +101,8 @@
     "rimraf": "2.5.0",
     "url-loader": "0.5.7",
     "webpack-dev-middleware": "1.4.0",
-    "webpack-hot-middleware": "2.6.0"
+    "webpack-hot-middleware": "2.6.0",
+    "x-ray": "2.0.3"
   },
   "config": {
     "commitizen": {
