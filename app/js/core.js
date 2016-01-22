@@ -1,6 +1,8 @@
 import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
 
+import routeNames from '../resources/routeNames.json';
+import { capitalize } from './format';
 /**
  * Will return a hash map of the bus stops to a list of bus routes with the
  * route direction
@@ -13,15 +15,18 @@ import R from 'ramda';
 export const createBusStopsMap = (data) => {
     return data.reduce((acc, obj) => {
         if (!acc.has(obj.stop)) {
+
             return acc.set(obj.stop, fromJS([{
                 route: obj.route,
-                direction: obj.direction
+                direction: obj.direction,
+                name: capitalize(R.find(R.propEq('number', obj.route))(routeNames).name)
             }]));
         } else {
             return acc.update(obj.stop, (val) => {
                 return val.push(Map({
                     route: obj.route,
-                    direction: obj.direction
+                    direction: obj.direction,
+                    name: capitalize(R.find(R.propEq('number', obj.route))(routeNames).name)
                 }));
             });
         }

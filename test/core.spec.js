@@ -17,6 +17,7 @@ import data from '../app/resources/sample.json';
 describe('Creating the stopsMap. Mapping bus stops to a list of {route direction} Immutable Map', () => {
     it('should return a Map of key stops with a list of direction route values as a Map', () => {
         const hashMap = createBusStopsMap(data);
+        console.log(hashMap)
         expect(hashMap).to.be.instanceof(Map);
         expect(hashMap.has(1509)).to.be.true;
         expect(hashMap.get(1509)).to.be.instanceof(List);
