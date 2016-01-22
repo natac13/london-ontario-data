@@ -3,6 +3,10 @@ import R from 'ramda';
 
 import routeNames from '../resources/routeNames.json';
 import { capitalize } from './format';
+
+const capitalizeNameProperty = R.compose(capitalize, R.prop('name'));
+
+
 /**
  * Will return a hash map of the bus stops to a list of bus routes with the
  * route direction
@@ -19,14 +23,18 @@ export const createBusStopsMap = (data) => {
             return acc.set(obj.stop, fromJS([{
                 route: obj.route,
                 direction: obj.direction,
-                name: capitalize(R.find(R.propEq('number', obj.route))(routeNames).name)
+                name: capitalizeNameProperty(
+                    R.find(R.propEq('number', obj.route))(routeNames)
+                )
             }]));
         } else {
             return acc.update(obj.stop, (val) => {
                 return val.push(Map({
                     route: obj.route,
                     direction: obj.direction,
-                    name: capitalize(R.find(R.propEq('number', obj.route))(routeNames).name)
+                    name: capitalizeNameProperty(
+                        R.find(R.propEq('number', obj.route))(routeNames)
+                    )
                 }));
             });
         }
