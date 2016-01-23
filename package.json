@@ -15,7 +15,8 @@
     "commit": "git-cz",
     "lint": "eslint app/",
     "csvtojson": "babel-node app/resources/utils/converter.js",
-    "scrap": "babel-node app/resources/utils/scrapStops.js"
+    "scrap": "babel-node app/resources/utils/scrapStops.js",
+    "scrap:All": "babel-node app/resources/utils/iterateScrap.js"
   },
   "repository": {
     "type": "git",
