@@ -7,4 +7,11 @@ import R from 'ramda';
  */
 export const capitalize = (string) => {
     return R.toUpper(string.slice(0,1)) + R.toLower(string.slice(1));
+
 };
+
+export const capitalizeEachWord = R.compose(
+    R.join(' '),
+    R.map(capitalize),
+    R.split(' ')
+);

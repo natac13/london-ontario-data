@@ -2,9 +2,9 @@ import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
 
 import routeNames from '../resources/routeNames.json';
-import { capitalize } from './format';
+import { capitalizeEachWord } from './format';
 
-const capitalizeNameProperty = R.compose(capitalize, R.prop('name'));
+const capitalizeNameProperty = R.compose(capitalizeEachWord, R.prop('name'));
 
 
 /**
