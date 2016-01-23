@@ -33,6 +33,20 @@ npm run commit
 ```
 
 
+### Scrapping Stop Data 
+I have written a little cli-script using [x-ray](https://github.com/lapwinglabs/x-ray) that will take in the routeID (eg. 06, 23 or 07) and a direction (eg. 1, 2, 3 or 4) to scrap for StopID data. This will then be written to a `.json` file with the signature `[routeID]-[direction].json`
+
+To run the script right now is done manually inputting the routeID and direction.
+```
+npm run scrap -- [routeID] [direction]
+// eg Richmond Northbound
+npm run scrap -- 06 2
+// eg Dundas Eastbound
+npm run scrap -- 02 1
+```
+
+I would like to automate this process by grabbing the `route.json` file which includes the routeID and a directions array. Allowing me to iterate this process.
+
 ### Deploy to Github pages
 ```
 npm run deploy
