@@ -21,10 +21,8 @@ installDevTools(Immutable);
 /*=====  End of Immutable Dev tools  ======*/
 
 
-
 const rootElement = document.getElementById('root');
 // import { history } from './store/configureStore';
-
 
 
 /*=====================================

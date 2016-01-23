@@ -1,11 +1,11 @@
-import { Map, List, fromJS } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import R from 'ramda';
 
 import routeNames from '../resources/routes.json';
 
 /**
  * Given a routeID which return a function that will accept an array of objects.
- * These object are representing routes
+ * These object are representing
  * @param  {[type]} routeID [description]
  * @return {[type]}         [description]
  */
