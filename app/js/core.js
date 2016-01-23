@@ -1,11 +1,17 @@
 import { Map, List, fromJS } from 'immutable';
 import R from 'ramda';
 
-import routeNames from '../resources/routeNames.json';
-import { capitalizeEachWord } from './format';
+import routeNames from '../resources/routes.json';
 
-const capitalizeNameProperty = R.compose(capitalizeEachWord, R.prop('name'));
-
+/**
+ * Given a routeID which return a function that will accept an array of objects.
+ * These object are representing routes
+ * @param  {[type]} routeID [description]
+ * @return {[type]}         [description]
+ */
+const getNameFromMatchedObject = (routeID) => {
+    return R.compose(R.prop('name'), R.find(R.propEq('ID', routeID)));
+};
 
 /**
  * Will return a hash map of the bus stops to a list of bus routes with the
@@ -23,18 +29,14 @@ export const createBusStopsMap = (data) => {
             return acc.set(obj.stop, fromJS([{
                 route: obj.route,
                 direction: obj.direction,
-                name: capitalizeNameProperty(
-                    R.find(R.propEq('number', obj.route))(routeNames)
-                )
+                name: getNameFromMatchedObject(obj.route)(routeNames)
             }]));
         } else {
             return acc.update(obj.stop, (val) => {
                 return val.push(Map({
                     route: obj.route,
                     direction: obj.direction,
-                    name: capitalizeNameProperty(
-                        R.find(R.propEq('number', obj.route))(routeNames)
-                    )
+                    name: getNameFromMatchedObject(obj.route)(routeNames)
                 }));
             });
         }
@@ -61,7 +63,7 @@ export const getNumberLength = R.compose(R.length, R.toString);
  */
 export const busStopsFilter = R.curry((stopsMap, userInput) => {
     return stopsMap.filter((routeList, stop) => {
-        const trimmedStopId = R.take(getNumberLength(userInput), R.toString(stop));
-        return trimmedStopId === R.toString(userInput);
+        const trimmedStopId = R.take(R.length(userInput), stop);
+        return trimmedStopId === userInput;
     });
 });
