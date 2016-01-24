@@ -1,4 +1,4 @@
-import { Map, List, fromJS } from 'immutable';
+import { Map } from 'immutable';
 
 import {
     CREATE_STOPID_MAP
