@@ -1,1 +1,2 @@
 export const ROUTES_FILTER = 'ROUTES_FILTER';
+export const CREATE_STOPID_MAP = 'CREATE_STOPID_MAP';

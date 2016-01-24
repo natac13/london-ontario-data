@@ -16,6 +16,7 @@
     "jsx-quotes": [ 2, "prefer-double" ],
     "no-multiple-empty-lines": 2,
     "no-console": 0,
+    "no-unused-vars": 1,
     "object-curly-spacing": [ 2, "always" ],
     "semi": [2, "always"],
     "strict": [2, "never"],

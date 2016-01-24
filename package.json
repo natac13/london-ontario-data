@@ -16,7 +16,8 @@
     "lint": "eslint app/",
     "csvtojson": "babel-node app/resources/utils/converter.js",
     "scrap": "babel-node app/resources/utils/scrapStops.js",
-    "scrap:All": "babel-node app/resources/utils/iterateScrap.js"
+    "scrap:All": "babel-node app/resources/utils/iterateScrap.js",
+    "combineStops": "babel-node app/resources/utils/bundleStopsFolder.js"
   },
   "repository": {
     "type": "git",
@@ -87,6 +88,7 @@
     "eslint": "1.10.3",
     "eslint-plugin-babel": "3.0.0",
     "eslint-plugin-react": "3.11.3",
+    "flux-standard-action": "0.6.0",
     "gh-pages": "0.8.0",
     "ghooks": "1.0.3",
     "ignore-styles": "1.2.0",
@@ -112,7 +114,7 @@
       "path": "node_modules/cz-conventional-changelog"
     },
     "validate-commit-msg": {
-        "types": [
+      "types": [
         "feat",
         "fix",
         "docs",
@@ -124,8 +126,8 @@
         "revert",
         "custom"
       ],
-        "warnOnFail": false,
-        "maxSubjectLength": 100
+      "warnOnFail": false,
+      "maxSubjectLength": 100
     },
     "ghooks": {
       "pre-commit": "npm run lint",

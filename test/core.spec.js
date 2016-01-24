@@ -10,18 +10,20 @@ import {
 /*** sample data ***/
 /*
 stops(keys) include
-1506, 1509, 1514, 1524, 1816, 1819, 1821, 1854, 1856, 1989, 2193, 2269, 2423
+25 total with 4 starting with 16
+548, 408, 1771, 1769, 1644, 1481, 940
  */
 import data from '../app/resources/sample.json';
 
 describe('Creating the stopsMap. Mapping bus stops to a list of {route direction} Immutable Map', () => {
+
     it('should return a Map of key stops with a list of direction route values as a Map', () => {
         const hashMap = createBusStopsMap(data);
         // console.log(JSON.stringify(hashMap, null, 4))
         expect(hashMap).to.be.instanceof(Map);
-        expect(hashMap.has("1509")).to.be.true;
-        expect(hashMap.get("1509")).to.be.instanceof(List);
-        expect(hashMap.get("1509").size).to.equal(2)
+        expect(hashMap.has("1771")).to.be.true;
+        expect(hashMap.get("1771")).to.be.instanceof(List);
+        expect(hashMap.get("1771").size).to.equal(1)
     });
 });
 
@@ -38,20 +40,20 @@ describe('stopsFilter', () => {
 
     it('should take in a stopsMap and a userInput to return a new stopsMap, which has been filtered based off userInput', () => {
         const stopsMap = createBusStopsMap(data);
-        const userInput = "18";
+        const userInput = "16";
         const filteredBusStops = busStopsFilter(stopsMap, userInput);
         expect(filteredBusStops).to.be.instanceof(Map);
-        expect(filteredBusStops.has("1816")).to.be.true;
-        expect(filteredBusStops.get("1816")).to.be.instanceof(List);
-        expect(filteredBusStops.size).to.equal(5);
+        expect(filteredBusStops.has("1644")).to.be.true;
+        expect(filteredBusStops.get("1644")).to.be.instanceof(List);
+        expect(filteredBusStops.size).to.equal(4);
     });
 
     it('should take in a full stopID and return the one busStop routeList', () => {
         const stopsMap = createBusStopsMap(data);
-        const userInput = "2423";
+        const userInput = "1481";
         const filteredBusStops = busStopsFilter(stopsMap, userInput);
-        expect(filteredBusStops.has("2423")).to.be.true;
+        expect(filteredBusStops.has("1481")).to.be.true;
         expect(filteredBusStops.size).to.equal(1);
-        expect(filteredBusStops.has("1509")).to.be.false;
+        expect(filteredBusStops.has("548")).to.be.false;
     });
 });
