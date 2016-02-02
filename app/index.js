@@ -1,13 +1,22 @@
 import React             from 'react';
 import { render }        from 'react-dom';
 // import Router            from 'react-router';
-// import { Provider }      from 'react-redux';
+import { Provider }      from 'react-redux';
 // import routes            from './config/routes';
-
+import { Map } from 'immutable';
 import App from './containers/App/';
 
-// import configureStore from './store/configureStore';
-// const store = configureStore();
+import configureStore from './store/configureStore';
+const store = configureStore(Map());
+
+/*===============================================
+=            Material-ui requirement            =
+===============================================*/
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+/*=====  End of Material-ui requirement  ======*/
 
 
 /*===========================================
@@ -52,5 +61,7 @@ const rootElement = document.getElementById('root');
 // ), rootElement);
 
 render((
-    <App />
+    <Provider store={store} >
+        <App />
+    </Provider>
 ), rootElement);

@@ -29,8 +29,10 @@ const port = isDevelopment ? 3087 : process.env.PORT;
 app.use(webpackMiddleware(compiler, webpackOptions));
 app.use(webpackHotMiddleware(compiler));
 
-app.get('/api/test', (req, res) => {
-    res.sendFile(path.join(__dirname, 'app/resources/directions.csv'))
+import data from './app/resources/sample.json';
+app.get('/api/all_stops', (req, res) => {
+    res.json(data);
+
 });
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));

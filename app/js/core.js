@@ -24,6 +24,7 @@ const getNameFromMatchedObject = (routeID) => {
  */
 export const createBusStopsMap = (data) => {
     return data.reduce((acc, obj) => {
+
         if (!acc.has(obj.stop)) {
 
             return acc.set(obj.stop, fromJS([{

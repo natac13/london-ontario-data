@@ -8,9 +8,7 @@ import {
     createBusStopsMap
 } from '../js/core';
 
-const initialState = Map({
-    stopIDMap: Map()
-});
+const initialState = Map();
 
 const initialData = (state = initialState, action) => {
     switch (action.type) {
