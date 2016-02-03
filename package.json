@@ -134,9 +134,8 @@
       "maxSubjectLength": 100
     },
     "ghooks": {
-      "pre-commit": "npm run lint",
       "commit-msg": "validate-commit-msg",
-      "pre-push": "npm test"
+      "pre-push": "npm run lint && npm test"
     }
   }
 }

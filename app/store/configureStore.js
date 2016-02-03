@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 /*** Middlewares ***/
 import logger from 'redux-logger';
-import { syncHistory, routeReducer } from 'redux-simple-router';
+import { syncHistory } from 'redux-simple-router';
 
 
 /*** Reducer ***/

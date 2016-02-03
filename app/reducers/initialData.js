@@ -8,7 +8,15 @@ import {
     createBusStopsMap
 } from '../js/core';
 
-const initialState = Map();
+const initialState = Map({
+    stopIDMap: Map(),
+    directionMap: Map({
+        1: 'East',
+        2: 'North',
+        3: 'South',
+        4: 'West'
+    })
+});
 
 const initialData = (state = initialState, action) => {
     switch (action.type) {

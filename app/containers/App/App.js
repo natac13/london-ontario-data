@@ -5,7 +5,7 @@ import * as ActionCreators from '../../actions';
 
 import axios from 'axios';
 
-import Search from '../../components/search/Search';
+import Search from '../../components/Search/';
 
 class App extends Component {
     constructor(props) {
@@ -39,8 +39,10 @@ class App extends Component {
 
 function mapStateToProps(state) {
     const stopIDMap = state.getIn(['initialData', 'stopIDMap']);
+    const directionMap = state.getIn(['initialData', 'directionMap']);
     return {
-        stopIDMap
+        stopIDMap,
+        directionMap
     };
 }
 
