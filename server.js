@@ -7,7 +7,7 @@ import webpack  from 'webpack';
 import config   from './webpack.config.js';
 
 /*** Initial Data ***/
-import data from './app/resources/sample.json';
+import data from './app/resources/allStops.json';
 
 import webpackMiddleware    from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';

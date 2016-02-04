@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 
+import { busStopsFilter } from '../../js/core';
+
 import style from './style';
 
 class Search extends Component {
@@ -22,22 +24,28 @@ class Search extends Component {
             fields: { stopID },
             directionMap
         } = this.props;
-        console.log(directionMap)
-        const stops = this.props.stopIDMap.map((routes, index) => {
+        let stopsMap = busStopsFilter(this.props.stopIDMap, stopID.value || '');
+        const stops = stopsMap.map((routes, stopKey) => {
             routes = routes.map(route => {
                 const routeNumber = route.get('route');
                 const name = route.get('name');
                 const direction = route.get('direction');
                 return (
-                    <p
-                        key={routeNumber}
-                        className={style.routeWrapper}>
-                        {routeNumber} - {name} heading {directionMap.get(direction)}
-                    </p>
+                    <div >
+                        <p> {stopKey} </p>
+                        <p
+                            key={routeNumber}
+                            className={style.route}>
+                            {routeNumber} - {name} heading {directionMap.get(direction)}
+                        </p>
+
+                    </div>
                 );
             });
             return (
-                <div key={index}>
+                <div
+                    key={stopKey}
+                    classNames={style.routeWrapper}>
                     {routes}
 
                 </div>

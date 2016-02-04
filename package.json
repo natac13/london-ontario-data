@@ -17,7 +17,8 @@
     "csvtojson": "babel-node app/resources/utils/converter.js",
     "scrap": "babel-node app/resources/utils/scrapStops.js",
     "scrap:All": "babel-node app/resources/utils/iterateScrap.js",
-    "combineStops": "babel-node app/resources/utils/bundleStopsFolder.js"
+    "combineStops": "babel-node app/resources/utils/bundleStopsFolder.js",
+    "x": "babel-node x.js"
   },
   "repository": {
     "type": "git",

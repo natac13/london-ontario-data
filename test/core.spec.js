@@ -28,7 +28,7 @@ describe('Creating the stopsMap. Mapping bus stops to a list of {route direction
 });
 
 
-describe('stopsFilter', () => {
+describe('busStopsFilter', () => {
 
     it('should return a function when only giving the busStopsMap. This function is then waiting for the userInput', () => {
         const stopsMap = createBusStopsMap(data);
@@ -56,4 +56,11 @@ describe('stopsFilter', () => {
         expect(filteredBusStops.size).to.equal(1);
         expect(filteredBusStops.has("548")).to.be.false;
     });
+
+    it('should return the given stopIDMap if there is no user input', () => {
+        const stopsMap = createBusStopsMap(data);
+        const userInput = '';
+        const filteredBusStops = busStopsFilter(stopsMap, userInput);
+        expect(filteredBusStops).to.equal(stopsMap);
+    })
 });
