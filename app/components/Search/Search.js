@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import classnames from 'classnames';
 
 import Input from 'react-toolbox/lib/input';
 
@@ -12,6 +13,7 @@ import style from './style';
 class Search extends Component {
     constructor(props) {
       super(props);
+      console.log(props);
 
     }
 
@@ -29,7 +31,8 @@ class Search extends Component {
 
       const {
         fields: { stopID },
-        directionMap
+        directionMap,
+        className
       } = this.props;
       let stopsMap = busStopsFilter(this.props.stopIDMap, stopID.value || '');
       const stops = stopsMap.map((routes, stopKey) => {
@@ -51,28 +54,32 @@ class Search extends Component {
           );
         });
         return (
-          <div
+          <li
             key={stopKey}
             classNames={style.routeWrapper}>
             {routes}
 
-          </div>
+          </li>
         );
+      });
+      const wrapperClass = classnames({
+        [style.wrapper]: true,
+        [className]: !!className
       });
 
       return (
-        <div className={style.wrapper}>
+        <div className={wrapperClass}>
           <Input
             className={style.search}
-            label="Enter Stop ID here"
+            placeholder="Enter Stop ID Here"
             name="searchStop"
             type="text"
             { ...stopID } />
-          <div
+          <ul
             className={style.listWrapper}>
-          {stops}
+            {stops}
 
-          </div>
+          </ul>
 
         </div>
       );

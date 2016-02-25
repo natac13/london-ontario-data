@@ -4,6 +4,9 @@ import { render }        from 'react-dom';
 import { Provider }      from 'react-redux';
 // import routes            from './config/routes';
 import { Map } from 'immutable';
+
+import './scss/setup';
+
 import App from './containers/App/';
 
 import configureStore from './store/configureStore';

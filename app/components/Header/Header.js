@@ -13,14 +13,14 @@ class Header extends Component {
   render() {
     const { className } = this.props;
     const wrapperClass = classnames({
-      [`${style.wrapper}`]: true,
-      [`${className}`]: !!className
+      [style.wrapper]: true,
+      [className]: !!className
     });
 
     return (
       <header className={wrapperClass}>
         <h1 className={style.title}>
-          Stop ID Search
+          LTC Webwatch
         </h1>
       </header>
     );

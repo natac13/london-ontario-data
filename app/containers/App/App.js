@@ -29,7 +29,11 @@ class App extends Component {
       return (
           <div className={style.app}>
             <Header className={style.header}/>
-            {this.state.gotData ? <Search {...this.props} /> : 'just waiting' }
+            {this.state.gotData ?
+              <Search
+                {...this.props}
+                className={style.search} /> :
+              'just waiting' }
 
           </div>
       );
