@@ -28,8 +28,8 @@ class App extends Component {
     render() {
       return (
           <div className={style.app}>
-              <Header className={style.header}/>
-              {this.state.gotData ? <Search {...this.props} /> : 'just waiting' }
+            <Header className={style.header}/>
+            {this.state.gotData ? <Search {...this.props} /> : 'just waiting' }
 
           </div>
       );
@@ -41,24 +41,24 @@ class App extends Component {
 ========================================*/
 
 function mapStateToProps(state) {
-    const stopIDMap = state.getIn(['initialData', 'stopIDMap']);
-    const directionMap = state.getIn(['initialData', 'directionMap']);
-    return {
-        stopIDMap,
-        directionMap
-    };
+  const stopIDMap = state.getIn(['initialData', 'stopIDMap']);
+  const directionMap = state.getIn(['initialData', 'directionMap']);
+  return {
+    stopIDMap,
+    directionMap
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(ActionCreators, dispatch),
-        dispatch
-    };
+  return {
+    actions: bindActionCreators(ActionCreators, dispatch),
+    dispatch
+  };
 }
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
 
 

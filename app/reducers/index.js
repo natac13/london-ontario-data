@@ -6,14 +6,14 @@ import { fromJS } from 'immutable';
 import initialData from './initialData';
 
 const rootReducer = combineReducers(Object.assign(
-    {},
-    {
-        initialData
-    },
-    {
-        routing: routeReducer,
-        form: (state, action) => fromJS(formReducer(state, action))
-    }
+  {},
+  {
+    initialData
+  },
+  {
+    routing: routeReducer,
+    form: (state, action) => fromJS(formReducer(state, action))
+  }
 
 ));
 

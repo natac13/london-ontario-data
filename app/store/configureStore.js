@@ -32,12 +32,12 @@ export default function configureStore(initialState) {
     // applyMiddleware supercharges createStore with middleware:
 
     // We can use it exactly like “vanilla” createStore.
-    return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(
-            reduxRouterMiddleware,
-            loggerMiddleware
-        )
-    );
+  return createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(
+      reduxRouterMiddleware,
+      loggerMiddleware
+    )
+  );
 }

@@ -27,4 +27,8 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  className: PropTypes.string
+};
+
 export default Header;

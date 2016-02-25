@@ -61,7 +61,7 @@ const rootElement = document.getElementById('root');
 // ), rootElement);
 
 render((
-    <Provider store={store} >
-        <App />
-    </Provider>
+  <Provider store={store} >
+    <App />
+  </Provider>
 ), rootElement);

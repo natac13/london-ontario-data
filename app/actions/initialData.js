@@ -1,5 +1,5 @@
 import {
-    CREATE_STOPID_MAP
+  CREATE_STOPID_MAP
 } from '../constants/';
 
 import { createAction } from 'redux-actions';
