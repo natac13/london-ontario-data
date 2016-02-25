@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 
-import { busStopsFilter } from '../../js/core';
+import Input from 'react-toolbox/lib/input';
+
+import {
+  busStopsFilter
+} from '../../js/core';
 
 import style from './style';
 
 class Search extends Component {
     constructor(props) {
-        super(props);
+      super(props);
 
     }
 
@@ -20,49 +24,54 @@ class Search extends Component {
 
     render() {
 
-        const {
-            fields: { stopID },
-            directionMap
-        } = this.props;
-        let stopsMap = busStopsFilter(this.props.stopIDMap, stopID.value || '');
-        const stops = stopsMap.map((routes, stopKey) => {
-            routes = routes.map(route => {
-                const routeNumber = route.get('route');
-                const name = route.get('name');
-                const direction = route.get('direction');
-                return (
-                    <div >
-                        <p> {stopKey} </p>
-                        <p
-                            key={routeNumber}
-                            className={style.route}>
-                            {routeNumber} - {name} heading {directionMap.get(direction)}
-                        </p>
+      const {
+        fields: { stopID },
+        directionMap
+      } = this.props;
+      let stopsMap = busStopsFilter(this.props.stopIDMap, stopID.value || '');
+      const stops = stopsMap.map((routes, stopKey) => {
 
-                    </div>
-                );
-            });
-            return (
-                <div
-                    key={stopKey}
-                    classNames={style.routeWrapper}>
-                    {routes}
-
-                </div>
-            );
-        });
-
-        return (
+        routes = routes.sortBy((route) => route.get('route')).map(route => {
+          const routeNumber = route.get('route');
+          const name = route.get('name');
+          const direction = route.get('direction');
+          return (
             <div >
-                <input name="searchStop" type="text" { ...stopID } />
-                <div
-                    className={style.wrapper}>
-                {stops}
+              <p
+                key={routeNumber}
+                className={style.route}>
+                {routeNumber} - {name} heading {directionMap.get(direction)}
+              </p>
 
-                </div>
+            </div>
+          );
+        });
+        return (
+            <div
+                key={stopKey}
+                classNames={style.routeWrapper}>
+                {routes}
 
             </div>
         );
+      });
+
+      return (
+          <div className={style.wrapper}>
+              <Input
+                className={style.search}
+                label="Enter Stop ID here"
+                name="searchStop"
+                type="text"
+                { ...stopID } />
+              <div
+                  className={style.listWrapper}>
+              {stops}
+
+              </div>
+
+          </div>
+      );
     }
 }
 

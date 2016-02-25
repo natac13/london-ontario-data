@@ -6,30 +6,33 @@ import * as ActionCreators from '../../actions';
 import axios from 'axios';
 
 import Search from '../../components/Search/';
+import Header from '../../components/Header/';
+
+import style from './style';
 
 class App extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            gotData: false
-        };
-        axios.get('/api/all_stops')
-            .then(data => {
-                this.props.actions.createStopIDMap(data.data);
-                this.setState({
-                    gotData: true
-                });
-            });
+      super(props);
+      this.state = {
+        gotData: false
+      };
+      axios.get('/api/all_stops')
+        .then(data => {
+          this.props.actions.createStopIDMap(data.data);
+          this.setState({
+            gotData: true
+          });
+        });
     }
 
     render() {
-        return (
-            <div >
-                HELLO LONDON! From component App
-                {this.state.gotData ? <Search {...this.props} /> : 'just waiting' }
+      return (
+          <div className={style.app}>
+              <Header className={style.header}/>
+              {this.state.gotData ? <Search {...this.props} /> : 'just waiting' }
 
-            </div>
-        );
+          </div>
+      );
     }
 }
 

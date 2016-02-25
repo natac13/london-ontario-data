@@ -1,4 +1,15 @@
 .wrapper {
   display: flex;
   flex-flow: column;
+
+}
+
+.search {
+  align-self: center;
+  margin: auto;
+}
+
+.listWrapper {
+  display: flex;
+  flex-flow: column;
 }
