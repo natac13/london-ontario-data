@@ -1,21 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import React, { Component, PropTypes } from 'react'
+import classnames from 'classnames'
 
-import style from './style';
-
+import style from './style'
 
 class Header extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { className } = this.props;
+  render () {
+    const { className } = this.props
     const wrapperClass = classnames({
       [style.wrapper]: true,
       [className]: !!className
-    });
+    })
 
     return (
       <header className={wrapperClass}>
@@ -23,12 +17,12 @@ class Header extends Component {
           LTC Webwatch
         </h1>
       </header>
-    );
+    )
   }
 }
 
 Header.propTypes = {
   className: PropTypes.string
-};
+}
 
-export default Header;
+export default Header

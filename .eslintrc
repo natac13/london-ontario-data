@@ -1,5 +1,4 @@
 {
-  "extends": "eslint:recommended",
   "ecmaFeatures": {
     "jsx": true,
     "modules": true
@@ -9,30 +8,14 @@
     "node": true,
     "es6": true,
   },
-  "parser": "babel-eslint",
-  "rules": {
-    "indent": [2, 2, {"SwitchCase": 1}],
-    "quotes": [2, "single"],
-    "jsx-quotes": [ 2, "prefer-double" ],
-    "no-multiple-empty-lines": 2,
-    "no-console": 0,
-    "no-unused-vars": 1,
-    "object-curly-spacing": [ 2, "always" ],
-    "semi": [2, "always"],
-    "strict": [2, "never"],
-    "space-before-blocks": [ 2, "always" ],
-    "space-before-function-paren": [ 2, { "anonymous": "always", "named": "never" } ],
-    "babel/generator-star-spacing": 1,
-    "babel/new-cap": 0,
-    "babel/object-shorthand": 1,
-    "babel/arrow-parens": 0,
-    "babel/no-await-in-loop": 1,
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
+  rules: {
+    "react/jsx-equals-spacing": [2, "never"],
+    "react/jsx-indent": [2, 2]
   },
+  "parser": "babel-eslint",
   "plugins": [
     "babel",
     "react"
-  ]
+  ],
+  "extends": ["standard", "standard-react"]
 }

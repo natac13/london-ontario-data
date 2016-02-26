@@ -1,12 +1,12 @@
-import { Map } from 'immutable';
+import { Map } from 'immutable'
 
 import {
   CREATE_STOPID_MAP
-} from '../constants/';
+} from '../constants/'
 
 import {
   createBusStopsMap
-} from '../js/core';
+} from '../js/core'
 
 const initialState = Map({
   stopIDMap: Map(),
@@ -16,15 +16,15 @@ const initialState = Map({
     3: 'South',
     4: 'West'
   })
-});
+})
 
 const initialData = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_STOPID_MAP:
-      return state.set('stopIDMap', createBusStopsMap(action.payload));
+      return state.set('stopIDMap', createBusStopsMap(action.payload))
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default initialData;
+export default initialData

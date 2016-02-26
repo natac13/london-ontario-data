@@ -1,7 +1,7 @@
 import {
   CREATE_STOPID_MAP
-} from '../constants/';
+} from '../constants/'
 
-import { createAction } from 'redux-actions';
+import { createAction } from 'redux-actions'
 
-export const createStopIDMap = createAction(CREATE_STOPID_MAP);
+export const createStopIDMap = createAction(CREATE_STOPID_MAP)

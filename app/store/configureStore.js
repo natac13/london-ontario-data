@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-import { compose } from 'ramda';
-/*** Middlewares ***/
-import logger from 'redux-logger';
-import { syncHistory } from 'redux-simple-router';
-/*** localStorage ***/
+import { createStore, applyMiddleware } from 'redux'
+// import { compose } from 'ramda'
+// Middlewares
+import logger from 'redux-logger'
+import { syncHistory } from 'redux-simple-router'
+//  localStorage
 // import persistState from 'redux-localstorage';
 // const storagePaths = ['initialData', 'stopIDMap']
 // const storageConfig = {
@@ -26,31 +26,21 @@ import { syncHistory } from 'redux-simple-router';
 // Might need to create a new piece of state to hold the results so that they are
 // stored to localstorage
 
-/*** Reducer ***/
-import rootReducer from '../reducers/';
+import rootReducer from '../reducers/'
 
-/*** history ***/
-import { createHistory } from 'history';
+import { createHistory } from 'history'
 
-export const history = createHistory();
+export const history = createHistory()
 // Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistory(history);
+const reduxRouterMiddleware = syncHistory(history)
 
-const loggerMiddleware = logger();
+const loggerMiddleware = logger()
 
+import Immutable from 'immutable'
+import installDevTools from 'immutable-devtools'
+installDevTools(Immutable)
 
-/*===========================================
-=            Immutable Dev tools            =
-===========================================*/
-
-import Immutable from 'immutable';
-import installDevTools from 'immutable-devtools';
-installDevTools(Immutable);
-
-/*=====  End of Immutable Dev tools  ======*/
-
-
-export default function configureStore(initialState) {
+export default function configureStore (initialState) {
     // applyMiddleware supercharges createStore with middleware:
 
     // We can use it exactly like “vanilla” createStore.
@@ -61,5 +51,5 @@ export default function configureStore(initialState) {
       reduxRouterMiddleware,
       loggerMiddleware
     )
-  );
+  )
 }

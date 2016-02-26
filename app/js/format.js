@@ -1,4 +1,4 @@
-import R from 'ramda';
+import R from 'ramda'
 /**
  * capitalize :: String a -> a
  * takes in a string and will return a new string with the first letter upperCased
@@ -6,12 +6,11 @@ import R from 'ramda';
  * @return {string}
  */
 export const capitalize = (string) => {
-  return R.toUpper(string.slice(0,1)) + R.toLower(string.slice(1));
-
-};
+  return R.toUpper(string.slice(0, 1)) + R.toLower(string.slice(1))
+}
 
 export const capitalizeEachWord = R.compose(
   R.join(' '),
   R.map(capitalize),
   R.split(' ')
-);
+)

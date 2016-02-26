@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/natac13/london-ontario-data.svg?branch=master)](https://travis-ci.org/natac13/london-ontario-data) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Build Status](https://travis-ci.org/natac13/london-ontario-data.svg?branch=master)](https://travis-ci.org/natac13/london-ontario-data) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 # london-ontario-data
 
