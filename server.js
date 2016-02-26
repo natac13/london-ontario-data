@@ -16,14 +16,14 @@ let app = express();
 
 const compiler = webpack(config);
 const webpackOptions = {
-    publicPath: config.output.publicPath,
-    quiet: false,
-    // hides all the bundling file names
-    noInfo: true,
-    // adds color to the terminal
-    stats: {
-        colors: true
-    }
+  publicPath: config.output.publicPath,
+  quiet: false,
+  // hides all the bundling file names
+  noInfo: true,
+  // adds color to the terminal
+  stats: {
+    colors: true
+  }
 };
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -35,12 +35,12 @@ app.use(webpackHotMiddleware(compiler));
 
 /*** Route to client side to obtain the data. ***/
 app.get('/api/all_stops', (req, res) => {
-    res.json(data);
+  res.json(data);
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.listen(port, 'localhost', () => {
-    console.log('Listening on Port ' + port);
+  console.log('Listening on Port ' + port);
 });

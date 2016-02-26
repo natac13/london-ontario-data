@@ -1,13 +1,35 @@
 import { createStore, applyMiddleware } from 'redux';
+import { compose } from 'ramda';
 /*** Middlewares ***/
 import logger from 'redux-logger';
 import { syncHistory } from 'redux-simple-router';
+/*** localStorage ***/
+// import persistState from 'redux-localstorage';
+// const storagePaths = ['initialData', 'stopIDMap']
+// const storageConfig = {
+//   slicer(paths) {
+//     return (state) => {
+//       let subset = {};
+//       state.get(paths)
 
+//       return subset;
+//     };
+//   },
+//   serialize(collection) {
+
+//   },
+//   deserialize(string) {
+
+//   }
+// };
+//
+// Might need to create a new piece of state to hold the results so that they are
+// stored to localstorage
 
 /*** Reducer ***/
 import rootReducer from '../reducers/';
 
-
+/*** history ***/
 import { createHistory } from 'history';
 
 export const history = createHistory();
