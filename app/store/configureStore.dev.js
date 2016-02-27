@@ -2,9 +2,16 @@ import { createStore, applyMiddleware } from 'redux'
 import { fromJS } from 'immutable'
 import { compose } from 'ramda'
 
+import rootReducer from '../reducers/'
+
 // Middlewares
 import logger from 'redux-logger'
 import { syncHistory } from 'redux-simple-router'
+import { createHistory } from 'history'
+export const history = createHistory()
+// Sync dispatched route actions to the history
+const reduxRouterMiddleware = syncHistory(history)
+const loggerMiddleware = logger()
 
 //  localStorage
 import persistState from 'redux-localstorage'
@@ -18,33 +25,19 @@ const storageConfig = {
     return initial.setIn(['storage', 'filteredMap'], persistent)
   }
 }
-const createPresistentStore = compose(
-  persistState(storagePaths, storageConfig)
-)(createStore)
-
-import rootReducer from '../reducers/'
-
-import { createHistory } from 'history'
-
-export const history = createHistory()
-// Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistory(history)
-
-const loggerMiddleware = logger()
-
-import Immutable from 'immutable'
-import installDevTools from 'immutable-devtools'
-installDevTools(Immutable)
 
 export default function configureStore (initialState) {
     // applyMiddleware supercharges createStore with middleware:
     // We can use it exactly like “vanilla” createStore.
-  return createPresistentStore(
+  return createStore(
     rootReducer,
     initialState,
-    applyMiddleware(
-      reduxRouterMiddleware,
-      loggerMiddleware
+    compose(
+      applyMiddleware(
+        reduxRouterMiddleware,
+        loggerMiddleware
+      ),
+      persistState(storagePaths, storageConfig)
     )
   )
 }
