@@ -33,7 +33,12 @@ class Search extends Component {
   }
 
   handleChange (value) {
-    this.storeList(value)
+    const {
+      stopIDMap,
+      actions
+    } = this.props
+    actions.storeFilteredMap({stopIDMap, value})
+    console.log(this.props.storage)
     this.props.fields.stopID.onChange(value)
   }
 

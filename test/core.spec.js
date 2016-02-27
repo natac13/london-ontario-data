@@ -30,13 +30,6 @@ describe('Creating the stopsMap. Mapping bus stops to a list of {route direction
 
 describe('busStopsFilter', () => {
 
-  it('should return a function when only giving the busStopsMap. This function is then waiting for the userInput', () => {
-    const stopsMap = createBusStopsMap(data);
-    const stopsFilterWithStopsMap = busStopsFilter(stopsMap);
-    expect(typeof stopsFilterWithStopsMap).to.equal('function');
-    // waiting on one argument.
-    expect(stopsFilterWithStopsMap.length).to.equal(1);
-  });
 
   it('should take in a stopsMap and a userInput to return a new stopsMap, which has been filtered based off userInput', () => {
     const stopsMap = createBusStopsMap(data);
