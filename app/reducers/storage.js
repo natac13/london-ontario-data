@@ -1,18 +1,24 @@
-import { Map, List } from 'immutable'
+import { Map } from 'immutable'
 
 import {
- STORE_FILTERED_MAP
+ STORE_FILTERED_MAP,
+ COPY_ID_MAP
 } from '../constants/'
 
 const initialState = Map({
-  filteredList: List()
+  filteredMap: Map()
 })
 
-export function storage (state = initialState, action) {
+function storage (state = initialState, action) {
   switch (action.type) {
     case STORE_FILTERED_MAP:
-      return state.set('filteredList', action.payload)
+      return state.set('filteredMap', action.payload)
+    case COPY_ID_MAP:
+      return state.set('filteredMap', action.payload)
     default:
       return state
   }
 }
+
+export default storage
+

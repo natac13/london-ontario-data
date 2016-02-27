@@ -58,7 +58,7 @@ export const getNumberLength = R.compose(R.length, R.toString)
  * @param  {Number} userInput
  * @return {Map}
  */
-export const busStopsFilter = R.curry((stopsMap, userInput) => {
+export const busStopsFilter = R.curry((stopsMap, userInput = '') => {
   return stopsMap.filter((routeList, stop) => {
     const trimmedStopId = R.take(R.length(userInput), stop)
     return trimmedStopId === userInput

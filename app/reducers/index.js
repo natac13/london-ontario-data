@@ -4,11 +4,13 @@ import { reducer as formReducer } from 'redux-form'
 import { fromJS } from 'immutable'
 
 import initialData from './initialData'
+import storage from './storage'
 
 const rootReducer = combineReducers(Object.assign(
   {},
   {
-    initialData
+    initialData,
+    storage
   },
   {
     routing: routeReducer,

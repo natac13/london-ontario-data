@@ -1,30 +1,36 @@
 import { createStore, applyMiddleware } from 'redux'
-// import { compose } from 'ramda'
+import { fromJS } from 'immutable'
+import { compose } from 'ramda'
+
 // Middlewares
 import logger from 'redux-logger'
 import { syncHistory } from 'redux-simple-router'
+
 //  localStorage
-// import persistState from 'redux-localstorage';
-// const storagePaths = ['initialData', 'stopIDMap']
-// const storageConfig = {
-//   slicer(paths) {
-//     return (state) => {
-//       let subset = {};
-//       state.get(paths)
+import persistState from 'redux-localstorage'
+const storagePaths = ['storage', 'filteredMap']
+const storageConfig = {
+  slicer (paths) {
+    return (state) => {
+      return state.getIn(paths)
+    }
+  },
+  serialize (collection) {
+    return JSON.stringify(collection.toJS())
+  },
+  deserialize (string) {
+    return fromJS(JSON.parse(string))
+  },
+  merge (initial, persistent) {
+    console.log('mmerge')
+    console.log(persistent)
 
-//       return subset;
-//     };
-//   },
-//   serialize(collection) {
-
-//   },
-//   deserialize(string) {
-
-//   }
-// };
-//
-// Might need to create a new piece of state to hold the results so that they are
-// stored to localstorage
+    return initial.setIn(['storage', 'filteredMap'], persistent)
+  }
+}
+const createPresistentStore = compose(
+  persistState(storagePaths, storageConfig)
+)(createStore)
 
 import rootReducer from '../reducers/'
 
@@ -44,7 +50,7 @@ export default function configureStore (initialState) {
     // applyMiddleware supercharges createStore with middleware:
 
     // We can use it exactly like “vanilla” createStore.
-  return createStore(
+  return createPresistentStore(
     rootReducer,
     initialState,
     applyMiddleware(

@@ -14,14 +14,41 @@ import style from './style'
 class Search extends Component {
   constructor (props) {
     super(props)
-    console.log(props)
+    console.log(props.storage)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    const {
+      stopIDMap,
+      actions
+    } = this.props
+    const filteredMap = this.props.storage.get('filteredMap')
+
+    if (filteredMap.size === 0) {
+      actions.copy(stopIDMap)
+    }
+
+    if (filteredMap.size === 1) {
+
+    }
   }
 
-  componentDidUpdate () {
+  componentWillUnmount () {
 
+  }
+
+  storeList (input) {
+    const {
+      stopIDMap,
+      actions
+    } = this.props
+    actions.storeFilteredMap(busStopsFilter(stopIDMap, input))
+  }
+
+  handleChange (value) {
+    this.storeList(value)
+    this.props.fields.stopID.onChange(value)
   }
 
   render () {
@@ -31,10 +58,16 @@ class Search extends Component {
     const {
       fields: { stopID },
       directionMap,
-      className
+      className,
+      stopIDMap
     } = this.props
-    let stopsMap = busStopsFilter(this.props.stopIDMap, stopID.value || '')
+
+    // create the filtered list.
+    let stopsMap = busStopsFilter(stopIDMap, stopID.value)
+    // stops is the full List which is rendered. Each stop has a List of route
+    // Maps
     const stops = stopsMap.map((routes, stopKey) => {
+      // routes is just the render components to place in the stopID <li> item
       routes = routes.sortBy((route) => route.get('route')).map((route) => {
         const routeNumber = route.get('route')
         const name = route.get('name')
@@ -72,7 +105,8 @@ class Search extends Component {
           placeholder='Enter Stop ID Here'
           name='searchStop'
           type='text'
-          { ...stopID } />
+          { ...stopID }
+          onChange={this.handleChange} />
         <ul
           className={style.listWrapper}>
           {stops}
@@ -86,9 +120,11 @@ class Search extends Component {
 
 Search.propTypes = {
   fields: PropTypes.object,
+  actions: PropTypes.object,
   directionMap: ImmutablePropTypes.map,
   stopIDMap: ImmutablePropTypes.map,
-  className: PropTypes.string
+  className: PropTypes.string,
+  storage: ImmutablePropTypes.map
 }
 
 export default reduxForm({

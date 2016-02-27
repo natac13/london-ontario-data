@@ -49,9 +49,11 @@ App.propTypes = {
 function mapStateToProps (state) {
   const stopIDMap = state.getIn(['initialData', 'stopIDMap'])
   const directionMap = state.getIn(['initialData', 'directionMap'])
+  const storage = state.get('storage')
   return {
     stopIDMap,
-    directionMap
+    directionMap,
+    storage
   }
 }
 
