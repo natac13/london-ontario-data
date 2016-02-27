@@ -24,21 +24,12 @@ class Search extends Component {
   componentWillUnmount () {
   }
 
-  storeList (input) {
-    const {
-      stopIDMap,
-      actions
-    } = this.props
-    actions.storeFilteredMap({stopIDMap, input})
-  }
-
   handleChange (value) {
     const {
       stopIDMap,
       actions
     } = this.props
     actions.storeFilteredMap({stopIDMap, value})
-    console.log(this.props.storage)
     this.props.fields.stopID.onChange(value)
   }
 
