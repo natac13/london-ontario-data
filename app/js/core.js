@@ -64,3 +64,17 @@ export const busStopsFilter = R.curry((stopsMap, userInput = '') => {
     return trimmedStopId === userInput
   })
 })
+
+/*
+MAY NOT NEED
+NO USE AT THE MOMENT
+using filteredMap || stopIDMap
+working find
+ */
+export const findStartingMap = (stopIDMap, filteredMap = Map()) => {
+  if (filteredMap.size > 0) {
+    return filteredMap
+  } else {
+    return stopIDMap
+  }
+}

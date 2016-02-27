@@ -1,12 +1,11 @@
-const path = require('path');
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const autoprefixer = require('autoprefixer')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var buildPath = path.join(__dirname, 'build');
-var entry = path.join(__dirname, 'app', 'index.js');
-
+var buildPath = path.join(__dirname, 'build')
+var entry = path.join(__dirname, 'app', 'index.js')
 
 module.exports = {
   context: __dirname,
@@ -88,4 +87,4 @@ module.exports = {
       }
     })
   ]
-};
+}

@@ -14,28 +14,13 @@ import style from './style'
 class Search extends Component {
   constructor (props) {
     super(props)
-    console.log(props.storage)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentWillMount () {
-    const {
-      stopIDMap,
-      actions
-    } = this.props
-    const filteredMap = this.props.storage.get('filteredMap')
-
-    if (filteredMap.size === 0) {
-      actions.copy(stopIDMap)
-    }
-
-    if (filteredMap.size === 1) {
-
-    }
+  componentDidMount () {
   }
 
   componentWillUnmount () {
-
   }
 
   storeList (input) {
@@ -43,7 +28,7 @@ class Search extends Component {
       stopIDMap,
       actions
     } = this.props
-    actions.storeFilteredMap(busStopsFilter(stopIDMap, input))
+    actions.storeFilteredMap({stopIDMap, input})
   }
 
   handleChange (value) {
@@ -54,7 +39,6 @@ class Search extends Component {
   render () {
     const baseUrl = 'http://www.ltconline.ca/webwatch/MobileAda.aspx?'
     // example r=01&d=1&s=598
-
     const {
       fields: { stopID },
       directionMap,
@@ -62,8 +46,9 @@ class Search extends Component {
       stopIDMap
     } = this.props
 
-    // create the filtered list.
-    let stopsMap = busStopsFilter(stopIDMap, stopID.value)
+    const filteredMap = this.props.storage.get('filteredMap')
+    // create the filtered list. Will use stopIDMap only for newUsers I think.
+    let stopsMap = busStopsFilter(filteredMap || stopIDMap, stopID.value)
     // stops is the full List which is rendered. Each stop has a List of route
     // Maps
     const stops = stopsMap.map((routes, stopKey) => {

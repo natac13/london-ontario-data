@@ -5,14 +5,25 @@ import {
  COPY_ID_MAP
 } from '../constants/'
 
+import {
+  busStopsFilter
+} from '../js/core'
+
 const initialState = Map({
   filteredMap: Map()
 })
 
+function storeMap (state, action) {
+  return state.set(
+    'filteredMap',
+    busStopsFilter(action.payload.stopIDMap, action.payload.input)
+  )
+}
+
 function storage (state = initialState, action) {
   switch (action.type) {
     case STORE_FILTERED_MAP:
-      return state.set('filteredMap', action.payload)
+      return storeMap(state, action)
     case COPY_ID_MAP:
       return state.set('filteredMap', action.payload)
     default:
