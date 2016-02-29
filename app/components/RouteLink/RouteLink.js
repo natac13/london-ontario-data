@@ -1,16 +1,14 @@
 import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import {
-  firstLetter
-} from '../../js/format'
+import findDirection from '../../js/findDirection'
 import directionMap from '../../constants/directionMap'
 
 import Icon from 'react-fa'
 
 import style from './style'
 
-const RouteLink = (props) => {
+function RouteLink (props) {
   const baseUrl = 'http://www.ltconline.ca/webwatch/MobileAda.aspx?'
 
   const {
@@ -21,6 +19,7 @@ const RouteLink = (props) => {
   const routeNumber = route.get('route')
   const name = route.get('name')
   const direction = route.get('direction')
+  const display = findDirection(directionMap, direction)
   return (
     <a
       key={routeNumber}
@@ -33,9 +32,9 @@ const RouteLink = (props) => {
       {name}
       &nbsp;
       <span className={style.routeDirection}>
-        {firstLetter(directionMap.getIn([direction, 'direction']))}
+        {display.get('heading')}
         &nbsp;
-        <Icon name={`long-arrow-${directionMap.getIn([direction, 'arrow'])}`}/>
+        <Icon name={`long-arrow-${display.get('arrow')}`}/>
       </span>
     </a>
   )
