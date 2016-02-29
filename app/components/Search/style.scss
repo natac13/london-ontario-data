@@ -1,5 +1,8 @@
 .wrapper {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -34,7 +37,7 @@
 
 .form {
   display: flex;
-  height: 10em;
+  padding: 0 4%;
   align-items: center;
   justify-content: center;
 }

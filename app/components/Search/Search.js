@@ -6,6 +6,8 @@ import Promise from 'bluebird'
 
 import Input from 'react-toolbox/lib/input'
 import { IconButton } from 'react-toolbox/lib/button'
+import Icon from 'react-fa'
+import ProgressBar from 'react-toolbox/lib/progress_bar'
 import StopsList from '../StopsList'
 
 import style from './style'
@@ -62,6 +64,7 @@ class Search extends Component {
       directionMap,
       className,
       stopIDMap,
+      fetch,
       error
     } = this.props
 
@@ -91,14 +94,15 @@ class Search extends Component {
             flat
             primary
             className={style.searchBtn}
-            icon='search'
+            icon={<Icon name='search'/>}
             type='submit'
             disabled={submitting} />
         </form>
-        <StopsList
+        {fetch.get('success')
+        ? <StopsList
           stopsMap={filteredMap || stopIDMap}
           directionMap={directionMap} />
-
+        : <ProgressBar type='circular' mode='indeterminate' />}
       </div>
     )
   }
@@ -111,6 +115,7 @@ Search.propTypes = {
   actions: PropTypes.object,
   directionMap: ImmutablePropTypes.map,
   stopIDMap: ImmutablePropTypes.map,
+  fetch: ImmutablePropTypes.map,
   className: PropTypes.string,
   storage: ImmutablePropTypes.map,
   error: PropTypes.string

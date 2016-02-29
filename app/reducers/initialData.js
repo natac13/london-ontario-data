@@ -15,7 +15,7 @@ const initialState = Map({
 const initialData = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_STOPID_MAP:
-      return state.set('stopIDMap', createBusStopsMap(action.payload))
+      return state.set('stopIDMap', createBusStopsMap(action.payload.data))
     default:
       return state
   }

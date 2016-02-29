@@ -6,12 +6,14 @@ import { mergeAll } from 'ramda'
 
 import initialData from './initialData'
 import storage from './storage'
+import fetch from './fetch'
 
 const rootReducer = combineReducers(mergeAll([
   {},
   {
     initialData,
-    storage
+    storage,
+    fetch
   },
   {
     routing: routeReducer,

@@ -8,6 +8,8 @@ import rootReducer from '../reducers/'
 import logger from 'redux-logger'
 import { syncHistory } from 'redux-simple-router'
 import { createHistory } from 'history'
+import promiseMiddleware from 'redux-promise'
+
 export const history = createHistory()
 // Sync dispatched route actions to the history
 const reduxRouterMiddleware = syncHistory(history)
@@ -35,6 +37,7 @@ export default function configureStore (initialState) {
     compose(
       applyMiddleware(
         reduxRouterMiddleware,
+        promiseMiddleware,
         loggerMiddleware
       ),
       persistState(storagePaths, storageConfig)
