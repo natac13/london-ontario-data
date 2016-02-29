@@ -32,6 +32,13 @@
 
 }
 
+.form {
+  display: flex;
+  height: 10em;
+  align-items: center;
+  justify-content: center;
+}
+
 .search[data-react-toolbox="input"] {
   height: 5em;
   margin: 0 auto 1em;
@@ -80,4 +87,10 @@
     /* hi-res laptops and desktops */
 
   }
+}
+
+.searchBtn {
+  padding-top: .3em;
+
+
 }

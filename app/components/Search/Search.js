@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import Promise from 'bluebird'
 
 import Input from 'react-toolbox/lib/input'
+import { IconButton } from 'react-toolbox/lib/button'
 import StopsList from '../StopsList'
 
 import style from './style'
@@ -32,6 +33,7 @@ class Search extends Component {
   }
 
   onSubmit (values, dispatch) {
+    console.log(values)
     return new Promise((resolve, reject) => {
       const { stopID } = values
       const {
@@ -56,6 +58,7 @@ class Search extends Component {
     const {
       fields: { stopID },
       handleSubmit,
+      submitting,
       directionMap,
       className,
       stopIDMap,
@@ -75,16 +78,22 @@ class Search extends Component {
       <div className={wrapperClass}>
         <form
           role='form'
+          onSubmit={handleSubmit(this.onSubmit)}
           className={style.form}>
           <Input
             className={style.search}
             placeholder='Enter Stop ID Here'
             error={error}
             name='searchStop'
-            icon='search'
             type='text'
             { ...stopID } />
-          <button type='submit' onClick={handleSubmit(this.onSubmit)}/>
+          <IconButton
+            flat
+            primary
+            className={style.searchBtn}
+            icon='search'
+            type='submit'
+            disabled={submitting} />
         </form>
         <StopsList
           stopsMap={filteredMap || stopIDMap}
@@ -98,6 +107,7 @@ class Search extends Component {
 Search.propTypes = {
   fields: PropTypes.object,
   handleSubmit: PropTypes.func,
+  submitting: PropTypes.bool,
   actions: PropTypes.object,
   directionMap: ImmutablePropTypes.map,
   stopIDMap: ImmutablePropTypes.map,

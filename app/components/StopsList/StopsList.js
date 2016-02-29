@@ -1,5 +1,6 @@
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import { take } from 'ramda'
 
 import StopItem from '../StopItem'
 
@@ -21,7 +22,7 @@ const StopsList = (props) => {
 
   return (
     <ul className={style.listWrapper}>
-     {stops}
+     {take(10, stops)}
     </ul>
   )
 }

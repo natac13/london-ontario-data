@@ -13,15 +13,10 @@ import style from './style'
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      gotData: false
-    }
+
     axios.get('/api/all_stops')
       .then((data) => {
         this.props.actions.createStopIDMap(data.data)
-        this.setState({
-          gotData: true
-        })
       })
   }
 
@@ -29,11 +24,9 @@ class App extends Component {
     return (
       <div className={style.app}>
         <Header className={style.header}/>
-        {this.state.gotData
-          ? <Search
-            {...this.props}
-            className={style.search} />
-          : 'just waiting'}
+        <Search
+          {...this.props}
+          className={style.search} />
 
       </div>
     )
