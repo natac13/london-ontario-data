@@ -14,11 +14,12 @@
     "deploy": "gh-pages -d build",
     "commit": "git-cz",
     "lint": "eslint app/",
-    "csvtojson": "babel-node app/resources/utils/converter.js",
-    "scrap": "babel-node app/resources/utils/scrapStops.js",
-    "scrap:All": "babel-node app/resources/utils/iterateScrap.js",
-    "combineStops": "babel-node app/resources/utils/bundleStopsFolder.js",
-    "x": "babel-node x.js"
+    "csvtojson": "babel-node app/utils/converter.js",
+    "scrap": "babel-node app/utils/scrapStops.js",
+    "scrap:All": "babel-node app/utils/iterateScrap.js",
+    "combineStops": "babel-node app/utils/bundleStopsFolder.js",
+    "x": "babel-node x.js",
+    "stopIDMap": "babel-node app/utils/convertStopsfile.js"
   },
   "repository": {
     "type": "git",
