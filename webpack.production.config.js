@@ -1,11 +1,11 @@
-const path = require('path')
-const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import path from 'path'
+import webpack from 'webpack'
+import autoprefixer from 'autoprefixer'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-var buildPath = path.join(__dirname, 'build')
-var entry = path.join(__dirname, 'app', 'index.js')
+const buildPath = path.join(__dirname, 'build')
+const entry = path.join(__dirname, 'app', 'index.js')
 module.exports = {
   // real source-map for production
   devtool: 'source-map',

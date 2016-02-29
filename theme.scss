@@ -1,2 +1,10 @@
 @import '~modularscale-sass/stylesheets/modular-scale';
 @import './app/scss/variables';
+@import './app/scss/colors';
+
+$color-primary: $ltc-blue !default;
+$color-primary-dark: darken($ltc-blue, 13%) !default;
+$color-accent: $ltc-green !default;
+$color-accent-dark: darken($ltc-green, 13%) !default;
+$color-primary-contrast: $color-dark-contrast !default;
+$color-accent-contrast: $color-dark-contrast !default;

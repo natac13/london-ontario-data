@@ -32,10 +32,30 @@
 
 }
 
-.search {
+.search[data-react-toolbox="input"] {
   height: 5em;
-  margin: auto;
+  margin: 0 auto 1em;
+  padding: 2em 0;
 
+  input[name="stopID"] {
+    text-align: center;
+    box-shadow: inset 0 0 20px -10px $shadow;
+    transition: .4s ease-out;
+
+    &:focus {
+      box-shadow: inset 0 0 20px -8px $ltc-green;
+    }
+  }
+
+  input[name="stopID"],
+  span[class*="material-icons"] {
+    font-size: ms(0);
+  }
+
+  span[class*="material-icons"] {
+    top: 1rem;
+    left: -3.5rem;
+  }
   @media (min-width:20em) {
     /* smartphones, iPhone, portrait 480x320 phones */
 

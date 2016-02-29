@@ -16,7 +16,7 @@ const initialState = Map({
 function storeMap (state, action) {
   return state.set(
     'filteredMap',
-    busStopsFilter(action.payload.stopIDMap, action.payload.value)
+    busStopsFilter(action.payload.stopIDMap, action.payload.stopID)
   )
 }
 

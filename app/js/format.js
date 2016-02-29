@@ -14,3 +14,5 @@ export const capitalizeEachWord = R.compose(
   R.map(capitalize),
   R.split(' ')
 )
+
+export const firstLetter = R.take(1)

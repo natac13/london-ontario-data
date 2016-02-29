@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
+import {
+  firstLetter
+} from '../../js/format'
+import directionMap from '../../constants/directionMap'
+
+import Icon from 'react-fa'
+
 import style from './style'
 
 const RouteLink = (props) => {
@@ -8,7 +15,6 @@ const RouteLink = (props) => {
 
   const {
     route,
-    directionMap,
     stopKey
   } = props
 
@@ -17,19 +23,26 @@ const RouteLink = (props) => {
   const direction = route.get('direction')
   return (
     <a
+      key={routeNumber}
+      className={style.route}
       href={`${baseUrl}r=${routeNumber}&d=${direction}&s=${stopKey}`}>
-      <p
-        key={routeNumber}
-        className={style.route}>
-        {routeNumber} - {name} heading {directionMap.get(direction)}
-      </p>
+      <span className={style.routeNumber}>
+        {routeNumber}
+      </span>
+      &nbsp;
+      {name}
+      &nbsp;
+      <span className={style.routeDirection}>
+        {firstLetter(directionMap.getIn([direction, 'direction']))}
+        &nbsp;
+        <Icon name={`long-arrow-${directionMap.getIn([direction, 'arrow'])}`}/>
+      </span>
     </a>
   )
 }
 
 RouteLink.propTypes = {
   route: ImmutablePropTypes.map,
-  directionMap: ImmutablePropTypes.map,
   stopKey: PropTypes.string
 }
 

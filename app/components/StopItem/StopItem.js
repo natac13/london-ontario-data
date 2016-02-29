@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
+import Icon from 'react-fa'
 import RouteLink from '../RouteLink'
 
 import style from './style'
@@ -8,7 +9,6 @@ import style from './style'
 const StopItem = (props) => {
   const {
     routes,
-    directionMap,
     stopKey
   } = props
 
@@ -16,7 +16,6 @@ const StopItem = (props) => {
     return (
       <RouteLink
         route={route}
-        directionMap={directionMap}
         stopKey={stopKey} />
     )
   })
@@ -24,6 +23,7 @@ const StopItem = (props) => {
   return (
     <li
       classNames={style.routeWrapper}>
+      <p className={style.stopNumber}><Icon name='bus'/>Stop &#35;{stopKey} </p>
       {routelist}
     </li>
   )
@@ -31,7 +31,6 @@ const StopItem = (props) => {
 
 StopItem.propTypes = {
   routes: ImmutablePropTypes.list,
-  directionMap: ImmutablePropTypes.map,
   stopKey: PropTypes.string
 }
 

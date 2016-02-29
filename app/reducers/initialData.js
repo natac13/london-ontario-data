@@ -9,13 +9,7 @@ import {
 } from '../js/core'
 
 const initialState = Map({
-  stopIDMap: Map(),
-  directionMap: Map({
-    1: 'East',
-    2: 'North',
-    3: 'South',
-    4: 'West'
-  })
+  stopIDMap: Map()
 })
 
 const initialData = (state = initialState, action) => {

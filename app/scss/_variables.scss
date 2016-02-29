@@ -1,6 +1,12 @@
 $ltc-blue:#0073C6;
 $ltc-green:#009F60;
 
+$shadow: grayscale(darken($ltc-blue, 40%));
+
+$arial-font-stack: Arial, "Helvetica Neue", Helvetica, sans-serif !default;
+$roboto-font-stack: 'Roboto', sans-serif !default;
+$bus-font-stack: 'VT323', 'Roboto', sans-serif !default;
+
 // modular scale setup
 $ms-base: 1em;
 $ms-ratio: 1.333;

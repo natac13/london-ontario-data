@@ -7,8 +7,7 @@ import style from './style'
 
 const StopsList = (props) => {
   const {
-    stopsMap,
-    directionMap
+    stopsMap
   } = props
 
   const stops = stopsMap.map((routes, stopKey) => {
@@ -16,7 +15,6 @@ const StopsList = (props) => {
       <StopItem
         key={stopKey}
         routes={routes}
-        directionMap={directionMap}
         stopKey={stopKey} />
     )
   })
@@ -29,8 +27,7 @@ const StopsList = (props) => {
 }
 
 StopsList.propTypes = {
-  stopsMap: ImmutablePropTypes.map,
-  directionMap: ImmutablePropTypes.map
+  stopsMap: ImmutablePropTypes.map
 }
 
 export default StopsList

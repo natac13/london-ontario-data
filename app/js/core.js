@@ -71,8 +71,8 @@ NO USE AT THE MOMENT
 using filteredMap || stopIDMap
 working find
  */
-export const findStartingMap = (stopIDMap, filteredMap = Map()) => {
-  if (filteredMap.size > 0) {
+export const findStartingMap = (stopIDMap, filteredMap = Map(), dirty = false) => {
+  if (filteredMap.size > 0 && !dirty) {
     return filteredMap
   } else {
     return stopIDMap
