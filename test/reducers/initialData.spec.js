@@ -29,16 +29,16 @@ describe('initialData reducer', () => {
     });
   });
   describe('switch cases of reducer', () => {
-    it('should handle CREATE_STOPID_MAP', () => {
-      const action = createStopIDMap(ltcData)
-      const state = Map();
-      const nextState = reducer(state, action);
-      expect(nextState).to.be.instanceof(Map);
-      expect(nextState.has('stopIDMap')).to.be.true;
-      expect(nextState.get('stopIDMap')).to.be.instanceof(Map);
-      expect(nextState.hasIn(['stopIDMap', '1481'])).to.be.true;
-      expect(nextState.getIn(['stopIDMap', '940']).size).to.equal(1);
-    });
+    // it('should handle CREATE_STOPID_MAP', () => {
+    //   const action = createStopIDMap(ltcData)
+    //   const state = Map();
+    //   const nextState = reducer(state, action);
+    //   expect(nextState).to.be.instanceof(Map);
+    //   expect(nextState.has('stopIDMap')).to.be.true;
+    //   expect(nextState.get('stopIDMap')).to.be.instanceof(Map);
+    //   expect(nextState.hasIn(['stopIDMap', '1481'])).to.be.true;
+    //   expect(nextState.getIn(['stopIDMap', '940']).size).to.equal(1);
+    // });
 
   });
 });
