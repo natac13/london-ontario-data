@@ -1,4 +1,4 @@
-import routes from '../routes.json'
+import routes from '../resources/routes.json'
 import { reduce, concat } from 'ramda'
 import { writeFile } from 'fs'
 
@@ -8,8 +8,8 @@ const routeMap = reduce((acc, route) => {
   const routeID = route.ID
   const [ dir1, dir2 ] = route.directions
   const bothDirections = concat(
-    require(`../Stops/${routeID}-${dir1}.json`),
-    require(`../Stops/${routeID}-${dir2}.json`)
+    require(`../resources/Stops/${routeID}-${dir1}.json`),
+    require(`../resources/Stops/${routeID}-${dir2}.json`)
   )
   return acc.concat(bothDirections)
 }, [])

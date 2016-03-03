@@ -12,7 +12,7 @@
     "build": "cross-env NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --color",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "precommit": "npm ru lint && npm run test",
+    "precommit": "npm run lint && npm run test",
     "commit": "git-cz",
     "lint": "eslint app/",
     "csvtojson": "babel-node app/utils/converter.js",

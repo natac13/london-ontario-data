@@ -1,4 +1,4 @@
-import routes from '../routes.json'
+import routes from '../resources/routes.json'
 import { slice } from 'ramda'
 import { exec } from 'child_process'
 

@@ -9,7 +9,7 @@ import routeNames from '../resources/routes.json'
  * @param  {[type]} routeID [description]
  * @return {[type]}         [description]
  */
-const getNameFromMatchedObject = (routeID) => {
+export const getNameFromMatchedObject = (routeID) => {
   return R.compose(R.prop('name'), R.find(R.propEq('ID', routeID)))
 }
 
