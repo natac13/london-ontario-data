@@ -6,14 +6,14 @@ import { mergeAll } from 'ramda'
 
 import initialData from './initialData'
 import storage from './storage'
-import fetch from './fetch'
+import asyncState from 'redux-async-state-reducer'
 
 const rootReducer = combineReducers(mergeAll([
   {},
   {
     initialData,
     storage,
-    fetch
+    asyncState
   },
   {
     routing: routeReducer,

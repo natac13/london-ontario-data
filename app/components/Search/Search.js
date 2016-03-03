@@ -64,7 +64,7 @@ class Search extends Component {
       directionMap,
       className,
       stopIDMap,
-      fetch,
+      asyncState,
       error
     } = this.props
 
@@ -98,7 +98,7 @@ class Search extends Component {
             type='submit'
             disabled={submitting} />
         </form>
-        {fetch.get('success')
+        {asyncState.get('success')
         ? <StopsList
           stopsMap={filteredMap || stopIDMap}
           directionMap={directionMap} />
@@ -115,7 +115,7 @@ Search.propTypes = {
   actions: PropTypes.object,
   directionMap: ImmutablePropTypes.map,
   stopIDMap: ImmutablePropTypes.map,
-  fetch: ImmutablePropTypes.map,
+  asyncState: ImmutablePropTypes.map,
   className: PropTypes.string,
   storage: ImmutablePropTypes.map,
   error: PropTypes.string

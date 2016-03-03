@@ -12,6 +12,7 @@
     "build": "cross-env NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --color",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "precommit": "npm ru lint && npm run test",
     "commit": "git-cz",
     "lint": "eslint app/",
     "csvtojson": "babel-node app/utils/converter.js",
@@ -79,6 +80,7 @@
     "react-toolbox": "0.14.1",
     "redux": "3.2.1",
     "redux-actions": "0.9.0",
+    "redux-async-state-reducer": "0.1.2",
     "redux-form": "4.1.6",
     "redux-immutable": "3.0.3",
     "redux-localstorage": "0.4.0",
@@ -153,9 +155,8 @@
       "maxSubjectLength": 100
     },
     "ghooks": {
-      "pre-commit": "npm run lint",
-      "commit-msg": "validate-commit-msg",
-      "pre-push": "npm run test"
+      "pre-commit": "npm run lint && npm run test",
+      "commit-msg": "validate-commit-msg"
     }
   },
   "standard": {

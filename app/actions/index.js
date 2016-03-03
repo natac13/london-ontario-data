@@ -1,3 +1,8 @@
 export * from './initialData'
 export * from './storage'
-export * from './fetch'
+
+export {
+  request,
+  requestFail,
+  requestSuccess
+} from 'redux-async-state-reducer'
