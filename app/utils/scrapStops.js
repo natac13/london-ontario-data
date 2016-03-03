@@ -3,16 +3,9 @@ const xray = xRay()
 
 import { map, slice, compose } from 'ramda'
 import { writeFile } from 'fs'
-import { getNameFromMatchedObject } from '../js/core'
 
-import { convertData } from '../../server/controllers/helpers'
-import routeNames from '../resources/routes.json'
-function addRouteName (route) {
-  return {
-    ...route,
-    routeName: getNameFromMatchedObject(route.route)(routeNames)
-  }
-}
+import { convertData, addRouteName } from '../../server/controllers/helpers'
+
 const convertDataList = map(compose(addRouteName, convertData))
 
 // import mongoose from 'mongoose'

@@ -1,4 +1,6 @@
 import { indexOf, slice } from 'ramda'
+import { getNameFromMatchedObject } from '../../app/js/core'
+import routeNames from '../../app/resources/routes.json'
 
 const getRouteID = (link) => {
   const start = indexOf('r=', link) + 2
@@ -25,6 +27,15 @@ function convertData (obj) {
     stop: getStopID(obj.link)
   }
 }
+
+function addRouteName (route) {
+  return {
+    ...route,
+    routeName: getNameFromMatchedObject(route.route)(routeNames)
+  }
+}
+
 export {
-  convertData
+  convertData,
+  addRouteName
 }
