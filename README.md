@@ -2,10 +2,8 @@
 
 # london-ontario-data
 
+This is a project to create a better experience for the local transit users. When a person is at a bus stop they see a sign that has the stopID and a few route numbers. This application allows the user to input the stopID and see the routes that are coming to that stop by name. There is a list of route links generated that when navigated, shows the arrival times of the next 3 bus. The app requires scrapping the current site for the data via the `href` of the `<a>` tags on their simple page.
 
-A project that came up as an idea at a local meetup. London Ontario Data Visualizations! Project uses React, Redux, and will use D3 when I learn it.
-
-The meetup was for **functional programming** so this project is going to try and be as functional as it can be. 
 
 ### Start the app locally
 ```
@@ -15,6 +13,16 @@ npm install
 // to run the app
 npm start
 ```
+This will start the app on port 3087 and will be wrapped with nodemon so that it will restart whenever one of the server side files changes. The client changes are handled with hot modules reloading via webpack. 
+
+### Demo of Production
+Will launch the app in its demo mode. This connects to mongoLab for the db. Still wrapped in nodemon. However webpack is not building this on the fly and therefore a build needs to run first
+```
+npm run build  
+
+npm run start:demo
+```
+
 
 ### Testing 
 ```

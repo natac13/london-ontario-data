@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf build/",
-    "start": "nodemon server.js",
+    "start": "cross-env NODE_ENV=development nodemon server.js",
+    "start:demo": "cross-env NODE_ENV=demo nodemon --exec babel-node --trace-sync-io server.js",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require ignore-styles --require ./test/test_helper.js",
     "test:watch": "npm run test -- --watch",
     "prebuild": "npm run clean",
@@ -29,7 +30,9 @@
   "keywords": [
     "React",
     "Redux",
-    "D3"
+    "london",
+    "ontario",
+    "transit"
   ],
   "author": "Sean Campbell <seancampbell13@gmail.com> (http://seancampbellnatac.com/)",
   "license": "MIT",
@@ -49,6 +52,7 @@
     "babel-preset-stage-0": "6.3.13",
     "bluebird": "3.3.3",
     "classnames": "2.2.1",
+    "compression": "1.6.1",
     "css-loader": "0.23.1",
     "dotenv": "2.0.0",
     "express": "4.13.3",
@@ -59,7 +63,6 @@
     "html-webpack-plugin": "1.7.0",
     "image-webpack-loader": "1.6.2",
     "immutable": "3.7.6",
-    "isomorphic-fetch": "2.2.1",
     "json-loader": "0.5.4",
     "modularscale-sass": "2.1.1",
     "mongodb": "2.1.7",

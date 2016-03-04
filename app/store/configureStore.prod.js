@@ -5,10 +5,7 @@ import { compose } from 'ramda'
 import rootReducer from '../reducers/'
 
 // Middlewares
-import logger from 'redux-logger'
 import promiseMiddleware from 'redux-promise'
-
-const loggerMiddleware = logger()
 
 //  localStorage
 import persistState from 'redux-localstorage'
@@ -31,8 +28,7 @@ export default function configureStore (initialState) {
     initialState,
     compose(
       applyMiddleware(
-        promiseMiddleware,
-        loggerMiddleware
+        promiseMiddleware
       ),
       persistState(storagePaths, storageConfig)
     )
