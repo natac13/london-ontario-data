@@ -6,7 +6,7 @@ import { slice } from 'ramda'
 import Stop from '../models/stop'
 import Route from '../models/route'
 
-import { convertData } from './helpers'
+import { convertStopData } from './helpers'
 
 const stopRouter = Router()
 
@@ -29,7 +29,7 @@ stopRouter.get('/', function handleHome (req, res) {
     // gets rid of the back link, Mobile Live Arrival Times and WebWatch Home
     result = slice(0, result.length - 3, result)
     result.map(async function saveEachResult (obj) {
-      const data = convertData(obj)
+      const data = convertStopData(obj)
       const routeObject = await Route.findOne({ 'ID': data.route }, 'name').exec()
 
       Stop.findOneAndUpdate(

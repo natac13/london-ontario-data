@@ -1,8 +1,13 @@
 import express from 'express'
 import path from 'path'
-import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+mongoose.Promise = require('bluebird')
 
-dotenv.load()
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
+if (isDevelopment) {
+  require('dotenv').load()
+}
 
 /** Webpack imports ***/
 import webpack from 'webpack'
@@ -14,11 +19,14 @@ import data from './app/resources/stopIDMap.json'
 import webpackMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 /** Mongo Connection using mongoose **/
-import mongoose from 'mongoose'
-mongoose.Promise = require('bluebird')
-mongoose.connect(process.env.MONGO_URI)
+
+mongoose.connect(isDevelopment ? process.env.MONGO_DEV : process.env.MONGO_URI)
   .then(function connectSuccess () {
-    console.log('Connected to mongoDB via mongoose')
+    if (isDevelopment) {
+      console.log('Connected to local mongoDB')
+    } else {
+      console.log('Connected to mongoDB through mongoLab')
+    }
   })
   .catch(function error (error) {
     throw error
@@ -26,6 +34,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 import routeController from './server/controllers/routes'
 import stopController from './server/controllers/stops'
+import apiController from './server/controllers/api'
 
 let app = express()
 
@@ -41,12 +50,12 @@ const webpackOptions = {
   }
 }
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
-const port = isDevelopment ? 3087 : process.env.PORT
+const port = process.env.PORT || 3087
 
 app.use(webpackMiddleware(compiler, webpackOptions))
 app.use(webpackHotMiddleware(compiler))
 
+app.use('/api', apiController)
 /** Route to client side to obtain the data. ***/
 app.get('/api/all_stops', (req, res) => {
   res.json(data)

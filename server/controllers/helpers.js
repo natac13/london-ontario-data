@@ -1,6 +1,10 @@
-import { indexOf, slice } from 'ramda'
+import Promise from 'bluebird'
+import { indexOf, slice, take } from 'ramda'
 import { getNameFromMatchedObject } from '../../app/js/core'
+import { capitalizeEachWord } from '../../app/js/format'
 import routeNames from '../../app/resources/routes.json'
+import xRay from 'x-ray'
+const xray = xRay()
 
 const getRouteID = (link) => {
   const start = indexOf('r=', link) + 2
@@ -19,12 +23,26 @@ const getStopID = (link) => {
   return slice(start, link.length, link)
 }
 
-function convertData (obj) {
+function convertStopData (obj) {
   return {
     name: obj.name,
     route: getRouteID(obj.link),
     direction: getDirection(obj.link),
     stop: getStopID(obj.link)
+  }
+}
+const takeTwo = take(2)
+const dropLastThree = slice(0, -3)
+
+function convertRouteData (obj) {
+  const [a, b] = takeTwo(obj.directionLinks)
+  return {
+    name: capitalizeEachWord(obj.name),
+    ID: getRouteID(obj.link),
+    directions: [
+      getDirection(a),
+      getDirection(b)
+    ]
   }
 }
 
@@ -35,7 +53,27 @@ function addRouteName (route) {
   }
 }
 
+/**
+ * Promise version of the xray scraping function
+ * See xray docs for usage.
+ * @return {Promise}
+ */
+function pXray (url, scope, selector) {
+  return new Promise((resolve, reject) => {
+    xray(url, scope, selector)(function handleXray (error, result) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(result)
+      }
+    })
+  })
+}
+
 export {
-  convertData,
-  addRouteName
+  convertStopData,
+  convertRouteData,
+  addRouteName,
+  pXray,
+  dropLastThree
 }

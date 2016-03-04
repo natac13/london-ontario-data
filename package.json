@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf build/",
-    "start": "babel-node server.js",
+    "start": "nodemon server.js",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require ignore-styles --require ./test/test_helper.js",
     "test:watch": "npm run test -- --watch",
     "prebuild": "npm run clean",
@@ -120,6 +120,7 @@
     "jsdom": "7.2.1",
     "mocha": "2.3.4",
     "node-loader": "0.5.0",
+    "nodemon": "1.9.1",
     "npm-install-webpack-plugin": "2.0.2",
     "postcss-loader": "0.8.0",
     "react-addons-test-utils": "0.14.7",
@@ -132,7 +133,7 @@
     "validate-commit-msg": "1.1.1",
     "webpack-dev-middleware": "1.4.0",
     "webpack-hot-middleware": "2.6.0",
-    "x-ray": "2.0.3"
+    "x-ray": "git@github.com:lapwinglabs/x-ray.git#bugfix/nested-crawling"
   },
   "config": {
     "commitizen": {
