@@ -3,8 +3,6 @@ import path from 'path'
 import mongoose from 'mongoose'
 mongoose.Promise = require('bluebird')
 
-/** Initial Data ***/
-import data from '../app/resources/stopIDMap.json'
 require('dotenv').load()
 const port = process.env.PORT || 3087
 
@@ -50,10 +48,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/stop', stopController)
-/** Route to client side to obtain the data. ***/
-app.get('/api/all_stops', (req, res) => {
-  res.json(data)
-})
 
 app.listen(port, 'localhost', () => {
   console.log('Listening on Port ' + port)

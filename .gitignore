@@ -1,7 +1,6 @@
 node_modules
 npm-debug.log
 .sass-cache/
-build/
 resources/
 data/
 .env

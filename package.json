@@ -7,7 +7,7 @@
     "clean": "rimraf build/",
     "start": "cross-env NODE_ENV=development nodemon server.js",
     "start:demo": "cross-env NODE_ENV=demo nodemon --exec babel-node --trace-sync-io server.js",
-    "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require ignore-styles --require ./test/test_helper.js",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --require ignore-styles --require ./test/test_helper.js",
     "test:watch": "npm run test -- --watch",
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --color",
@@ -35,7 +35,7 @@
     "transit"
   ],
   "engines": {
-    "node": "4.3.2",
+    "node": "5.7.1",
     "npm": "3.8.0"
   },
   "author": "Sean Campbell <seancampbell13@gmail.com> (http://seancampbellnatac.com/)",
@@ -96,7 +96,8 @@
     "redux-promise": "0.5.1",
     "sass-loader": "3.1.2",
     "style-loader": "0.13.0",
-    "webpack": "1.12.9"
+    "webpack": "1.12.9",
+    "x-ray": "https://github.com/natac13/x-ray.git#bugfix/nested-crawling"
   },
   "devDependencies": {
     "autoprefixer": "6.2.1",
@@ -139,8 +140,7 @@
     "url-loader": "0.5.7",
     "validate-commit-msg": "1.1.1",
     "webpack-dev-middleware": "1.4.0",
-    "webpack-hot-middleware": "2.6.0",
-    "x-ray": "git@github.com:lapwinglabs/x-ray.git#bugfix/nested-crawling"
+    "webpack-hot-middleware": "2.6.0"
   },
   "config": {
     "commitizen": {

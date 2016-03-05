@@ -15,7 +15,7 @@ const result = createBusStopsMap(allStops)
 const final = result.toJS()
 
 // file path from root or where the file is run
-fw('./app/resources/stopIDMap.json', JSON.stringify(final, null, 4))
+fw('./app/resources/stopIDMap2.json', JSON.stringify(final, null, 4))
   .then(function success (result) {
     console.log('Done making the stopIDMap')
   })
