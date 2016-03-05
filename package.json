@@ -96,7 +96,8 @@
     "redux-promise": "0.5.1",
     "sass-loader": "3.1.2",
     "style-loader": "0.13.0",
-    "webpack": "1.12.9"
+    "webpack": "1.12.9",
+    "x-ray": "git@github.com:natac13/x-ray.git#bugfix/nested-crawling"
   },
   "devDependencies": {
     "autoprefixer": "6.2.1",
@@ -139,8 +140,7 @@
     "url-loader": "0.5.7",
     "validate-commit-msg": "1.1.1",
     "webpack-dev-middleware": "1.4.0",
-    "webpack-hot-middleware": "2.6.0",
-    "x-ray": "git@github.com:lapwinglabs/x-ray.git#bugfix/nested-crawling"
+    "webpack-hot-middleware": "2.6.0"
   },
   "config": {
     "commitizen": {
