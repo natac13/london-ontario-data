@@ -25,9 +25,6 @@ const webpackOptions = {
   }
 }
 
-app.use(webpackMiddleware(compiler, webpackOptions))
-app.use(webpackHotMiddleware(compiler))
-
 /** Mongo Connection using mongoose **/
 mongoose.connect(process.env.MONGO_DEV)
   .then(function connectSuccess () {
@@ -42,6 +39,8 @@ import apiController from './controllers/api'
 import fetchController from './controllers/fetch'
 
 let app = express()
+app.use(webpackMiddleware(compiler, webpackOptions))
+app.use(webpackHotMiddleware(compiler))
 
 app.use('/api', apiController)
 app.use('/fetch', fetchController)

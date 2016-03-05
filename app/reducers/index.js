@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux-immutable'
-import { routeReducer } from 'redux-simple-router'
 import { reducer as formReducer } from 'redux-form'
 import { fromJS } from 'immutable'
 import { mergeAll } from 'ramda'
@@ -7,6 +6,7 @@ import { mergeAll } from 'ramda'
 import initialData from './initialData'
 import storage from './storage'
 import asyncState from 'redux-async-state-reducer'
+import routing from './routing'
 
 const rootReducer = combineReducers(mergeAll([
   {},
@@ -16,7 +16,7 @@ const rootReducer = combineReducers(mergeAll([
     asyncState
   },
   {
-    routing: routeReducer,
+    routing,
     form: (state, action) => fromJS(formReducer(state, action))
   }
 

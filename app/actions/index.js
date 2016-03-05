@@ -6,3 +6,5 @@ export {
   requestFail,
   requestSuccess
 } from 'redux-async-state-reducer'
+
+export { push } from 'react-router-redux'

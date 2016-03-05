@@ -34,6 +34,10 @@
     "ontario",
     "transit"
   ],
+  "engines": {
+    "node": "4.3.2",
+    "npm": "3.8.0"
+  },
   "author": "Sean Campbell <seancampbell13@gmail.com> (http://seancampbellnatac.com/)",
   "license": "MIT",
   "bugs": {
@@ -78,7 +82,8 @@
     "react-immutable-proptypes": "1.5.0",
     "react-pure-render": "1.0.2",
     "react-redux": "4.0.4",
-    "react-router": "1.0.3",
+    "react-router": "2.0.0",
+    "react-router-redux": "4.0.0",
     "react-tap-event-plugin": "0.2.2",
     "react-toolbox": "0.14.1",
     "redux": "3.2.1",
@@ -89,7 +94,6 @@
     "redux-localstorage": "0.4.0",
     "redux-logger": "2.3.1",
     "redux-promise": "0.5.1",
-    "redux-simple-router": "2.0.3",
     "sass-loader": "3.1.2",
     "style-loader": "0.13.0",
     "webpack": "1.12.9"
