@@ -27,7 +27,7 @@ let app = express()
 app.use(compression())
 app.use(express.static(path.join(__dirname, '../build')))
 
-const port = process.env.PORT
+const port = process.env.PORT || 3087
 app.use('/api', apiController)
 app.use('/fetch', fetchController)
 app.use('/stop', stopController)

@@ -1,6 +1,7 @@
 import 'babel-polyfill'
 import { expect } from 'chai'
-import { addRouteName } from '../../server/controllers/helpers'
+import { addRouteName } from '../../app/utils/scrapStops'
+console.log(addRouteName);
 
 describe('addRouteName function', () => {
   it('should return an object with a property of routeName with the value from the route.json file', (done) => {

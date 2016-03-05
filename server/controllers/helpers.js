@@ -1,8 +1,6 @@
 import Promise from 'bluebird'
 import { indexOf, slice, take } from 'ramda'
-import { getNameFromMatchedObject } from '../../app/js/core'
 import { capitalizeEachWord } from '../../app/js/format'
-import routeNames from '../../app/resources/routes.json'
 import xRay from 'x-ray'
 const xray = xRay()
 
@@ -46,13 +44,6 @@ function convertRouteData (obj) {
   }
 }
 
-function addRouteName (route) {
-  return {
-    ...route,
-    routeName: getNameFromMatchedObject(route.route)(routeNames)
-  }
-}
-
 /**
  * Promise version of the xray scraping function
  * See xray docs for usage.
@@ -73,7 +64,6 @@ function pXray (url, scope, selector) {
 export {
   convertStopData,
   convertRouteData,
-  addRouteName,
   pXray,
   dropLastThree
 }

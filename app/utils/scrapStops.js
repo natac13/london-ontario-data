@@ -3,10 +3,18 @@ const xray = xRay()
 
 import { map, slice, compose } from 'ramda'
 import { writeFile } from 'fs'
+import routeNames from '../resources/routes.json'
 
-import { convertData, addRouteName } from '../../server/controllers/helpers'
+import { getNameFromMatchedObject } from '../js/core'
+import { convertStopData } from '../../server/controllers/helpers'
+export const addRouteName = (route) => {
+  return {
+    ...route,
+    routeName: getNameFromMatchedObject(route.route)(routeNames)
+  }
+}
 
-const convertDataList = map(compose(addRouteName, convertData))
+const convertDataList = map(compose(addRouteName, convertStopData))
 
 // import mongoose from 'mongoose'
 // mongoose.Promise = require('bluebird')
