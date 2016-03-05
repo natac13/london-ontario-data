@@ -1,8 +1,10 @@
-import { Map, fromJS } from 'immutable'
+import { Map } from 'immutable'
 
 import {
   CREATE_STOPID_MAP
 } from '../constants/'
+
+import { createBusStopsMap } from '../js/core'
 
 const initialState = Map({
   stopIDMap: Map()
@@ -11,7 +13,7 @@ const initialState = Map({
 const initialData = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_STOPID_MAP:
-      return state.set('stopIDMap', fromJS(action.payload.data))
+      return state.set('stopIDMap', createBusStopsMap(action.payload.data))
     default:
       return state
   }

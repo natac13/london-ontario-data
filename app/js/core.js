@@ -1,8 +1,6 @@
 import { Map, fromJS } from 'immutable'
 import R from 'ramda'
 
-import routeNames from '../resources/routes.json'
-
 /**
  * Given a routeID which return a function that will accept an array of objects.
  * These object are representing
@@ -28,14 +26,14 @@ export const createBusStopsMap = (data) => {
       return acc.set(obj.stop, fromJS([{
         route: obj.route,
         direction: obj.direction,
-        name: getNameFromMatchedObject(obj.route)(routeNames)
+        name: obj.routeName
       }]))
     } else {
       return acc.update(obj.stop, (val) => {
         return val.push(Map({
           route: obj.route,
           direction: obj.direction,
-          name: getNameFromMatchedObject(obj.route)(routeNames)
+          name: obj.routeName
         }))
       })
     }
