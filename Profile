@@ -1,0 +1,1 @@
+web: node_moddules/.bin/babel-node server.js
