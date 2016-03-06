@@ -3,7 +3,7 @@ import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import NpmInstallPlugin from 'npm-install-webpack-plugin'
+// import NpmInstallPlugin from 'npm-install-webpack-plugin'
 
 const buildPath = path.join(__dirname, 'build')
 const entry = path.join(__dirname, 'app', 'index.js')
@@ -80,9 +80,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './app/index.html'
     }),
-    new NpmInstallPlugin({
-      save: true
-    }),
+    //new NpmInstallPlugin({
+      //save: true
+    //}),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({

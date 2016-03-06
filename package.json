@@ -96,8 +96,7 @@
     "redux-promise": "0.5.1",
     "sass-loader": "3.1.2",
     "style-loader": "0.13.0",
-    "webpack": "1.12.9",
-    "x-ray": "https://github.com/natac13/x-ray.git#bugfix/nested-crawling"
+    "webpack": "1.12.9"
   },
   "devDependencies": {
     "autoprefixer": "6.2.1",
@@ -107,7 +106,7 @@
     "chai": "3.4.1",
     "chai-as-promised": "5.2.0",
     "chai-immutable": "1.5.3",
-    "commitizen": "2.4.6",
+    "commitizen": "~2.6.1",
     "cross-env": "1.0.6",
     "csvtojson": "0.5.1",
     "cz-conventional-changelog": "1.1.5",
