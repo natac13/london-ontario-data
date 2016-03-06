@@ -27,6 +27,6 @@ app.use('/api', apiController)
 app.use('/fetch', fetchController)
 app.use('/stop', stopController)
 
-app.listen(port, 'localhost', () => {
+app.listen(port, () => {
   console.log('Listening on Port ' + port)
 })
