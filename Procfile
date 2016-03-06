@@ -1,1 +1,1 @@
-web: node_modules/.bin/babel-node ./server/server.prod.js
+web: npm run heroku

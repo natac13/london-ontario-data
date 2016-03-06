@@ -21,7 +21,8 @@
     "scrap:All": "babel-node app/utils/iterateScrap.js",
     "combineStops": "babel-node app/utils/bundleStopsFolder.js",
     "x": "babel-node x.js",
-    "stopIDMap": "babel-node app/utils/convertStopsfile.js"
+    "stopIDMap": "babel-node app/utils/convertStopsfile.js",
+    "heroku": "babel-node ./server/production.js"
   },
   "repository": {
     "type": "git",
