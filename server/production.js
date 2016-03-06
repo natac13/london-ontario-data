@@ -4,11 +4,6 @@ import path from 'path'
 import mongoose from 'mongoose'
 mongoose.Promise = require('bluebird')
 
-const isDemo = process.env.NODE_ENV === 'demo'
-if (isDemo) {
-  require('dotenv').load()
-}
-
 /** Mongo Connection using mongoose **/
 
 mongoose.connect(process.env.MONGO_URI)
