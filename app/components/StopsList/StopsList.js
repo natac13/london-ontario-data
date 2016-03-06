@@ -22,7 +22,7 @@ const StopsList = (props) => {
 
   return (
     <ul className={style.listWrapper}>
-     {take(10, stops)}
+     {take(40, stops)}
     </ul>
   )
 }
