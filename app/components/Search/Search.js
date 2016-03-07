@@ -35,7 +35,6 @@ class Search extends Component {
   }
 
   onSubmit (values, dispatch) {
-    console.log(values)
     return new Promise((resolve, reject) => {
       const { stopID } = values
       const {
@@ -75,7 +74,6 @@ class Search extends Component {
       [style.wrapper]: true,
       [className]: !!className
     })
-    console.log(this.props)
 
     return (
       <div className={wrapperClass}>

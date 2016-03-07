@@ -2,8 +2,9 @@
   display: flex;
   flex-flow: column;
   justify-content: center;
-  height: 100vh;
+  height: 150vh;
   width: 100vw;
+  overflow:hidden;
 
   @media (min-width:20em) {
     /* smartphones, iPhone, portrait 480x320 phones */

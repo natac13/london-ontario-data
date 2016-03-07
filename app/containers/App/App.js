@@ -32,9 +32,14 @@ class App extends Component {
   }
 
   render () {
+    const { actions, navBtn } = this.props
     return (
       <div className={style.app}>
-        <Header className={style.header}/>
+        <Header
+          className={style.header}
+          navOpen={actions.navOpen}
+          navClose={actions.navClose}
+          navBtn={navBtn} />
         <Search className={style.search} {...this.props} />
 
       </div>
@@ -45,7 +50,8 @@ class App extends Component {
 App.propTypes = {
   actions: PropTypes.object,
   storage: ImmutablePropTypes.map,
-  getStopIDMap: PropTypes.func
+  getStopIDMap: PropTypes.func,
+  navBtn: ImmutablePropTypes.map
 }
 
 //  Redux Connection
@@ -54,11 +60,13 @@ function mapStateToProps (state) {
   const directionMap = state.getIn(['initialData', 'directionMap'])
   const storage = state.get('storage')
   const asyncState = state.get('asyncState')
+  const navBtn = state.get('navBtn')
   return {
     stopIDMap,
     directionMap,
     storage,
-    asyncState
+    asyncState,
+    navBtn
   }
 }
 
