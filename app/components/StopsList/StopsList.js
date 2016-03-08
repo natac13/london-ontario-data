@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { take } from 'ramda'
 
@@ -8,13 +8,15 @@ import style from './style'
 
 const StopsList = (props) => {
   const {
-    stopsMap
+    stopsMap,
+    actions
   } = props
 
   const stops = stopsMap.map((routes, stopKey) => {
     return (
       <StopItem
         key={stopKey}
+        actions={actions}
         routes={routes}
         stopKey={stopKey} />
     )
@@ -28,7 +30,8 @@ const StopsList = (props) => {
 }
 
 StopsList.propTypes = {
-  stopsMap: ImmutablePropTypes.map
+  stopsMap: ImmutablePropTypes.map,
+  actions: PropTypes.object
 }
 
 export default StopsList

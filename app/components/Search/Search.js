@@ -64,7 +64,8 @@ class Search extends Component {
       className,
       stopIDMap,
       asyncState,
-      error
+      error,
+      actions
     } = this.props
 
     const filteredMap = this.props.storage.get('filteredMap')
@@ -98,6 +99,7 @@ class Search extends Component {
         </form>
         {asyncState.get('success')
         ? <StopsList
+          actions={actions}
           stopsMap={filteredMap || stopIDMap}
           directionMap={directionMap} />
         : <ProgressBar type='circular' mode='indeterminate' />}

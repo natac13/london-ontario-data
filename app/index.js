@@ -1,15 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
-// import routes            from './config/routes';
+import routes from './config/routes'
 import { Map } from 'immutable'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 /** Global styles */
 import './scss/setup'
-
-import App from './containers/App/'
 
 import configureStore from './store/configureStore'
 const store = configureStore(Map())
@@ -23,6 +21,8 @@ const history = syncHistoryWithStore(browserHistory, store, syncOptions)
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
+// Immutable dev tools makes for easier viewing of Maps and Lists in the
+// Chrome Developer tools.
 import Immutable from 'immutable'
 import installDevTools from 'immutable-devtools'
 installDevTools(Immutable)
@@ -32,13 +32,7 @@ const rootElement = document.getElementById('root')
 render((
   <Provider store={store}>
     <Router history={history} >
-      <Route path='/' component={App}/>
+      {routes}
     </Router>
   </Provider>
 ), rootElement)
-
-// render((
-//   <Provider store={store} >
-//     <App />
-//   </Provider>
-// ), rootElement)

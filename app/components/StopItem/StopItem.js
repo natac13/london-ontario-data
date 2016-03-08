@@ -9,12 +9,14 @@ import style from './style'
 const StopItem = (props) => {
   const {
     routes,
-    stopKey
+    stopKey,
+    actions
   } = props
 
   const routelist = routes.sortBy((route) => route.get('route')).map((route) => {
     return (
       <RouteLink
+        actions={actions}
         route={route}
         stopKey={stopKey} />
     )
@@ -31,7 +33,8 @@ const StopItem = (props) => {
 
 StopItem.propTypes = {
   routes: ImmutablePropTypes.list,
-  stopKey: PropTypes.string
+  stopKey: PropTypes.string,
+  actions: PropTypes.object
 }
 
 export default StopItem

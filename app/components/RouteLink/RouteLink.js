@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import { curry } from 'ramda'
 
 import findDirection from '../../js/findDirection'
 import directionMap from '../../constants/directionMap'
@@ -9,22 +10,26 @@ import Icon from 'react-fa'
 import style from './style'
 
 function RouteLink (props) {
-  const baseUrl = 'http://www.ltconline.ca/webwatch/MobileAda.aspx?'
-
   const {
     route,
     stopKey
   } = props
 
+  const handleClick = curry(function (routeNumber, direction, stopKey, event) {
+    event.preventDefault()
+    props.actions.push(`/routeTimes/${routeNumber}/${direction}/${stopKey}`)
+  })
+
   const routeNumber = route.get('route')
   const name = route.get('name')
   const direction = route.get('direction')
   const display = findDirection(directionMap, direction)
+
   return (
     <a
       key={routeNumber}
       className={style.route}
-      href={`${baseUrl}r=${routeNumber}&d=${direction}&s=${stopKey}`}>
+      onClick={handleClick(routeNumber, direction, stopKey)} >
       <span className={style.routeNumber}>
         {routeNumber}
       </span>
@@ -42,7 +47,8 @@ function RouteLink (props) {
 
 RouteLink.propTypes = {
   route: ImmutablePropTypes.map,
-  stopKey: PropTypes.string
+  stopKey: PropTypes.string,
+  actions: PropTypes.object
 }
 
 export default RouteLink

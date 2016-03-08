@@ -18,7 +18,7 @@ class Header extends Component {
       <nav className={style.navBar}>
         <header className={wrapperClass}>
           <h1 className={style.title}>
-            LTC Webwatch
+            <span className={style.ltc}>LTC</span> Webwatch
           </h1>
         </header>
         <NavButton
