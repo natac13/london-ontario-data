@@ -69,5 +69,29 @@ router.get('/routes', function getHandler (req, res) {
     console.log(err)
   })
 })
+const timeRoute = '/times/:routeNumber/:direction/:stopID'
+router.get(timeRoute, function getHandler (req, res) {
+  const baseUrl = 'http://www.ltconline.ca/webwatch/MobileAda.aspx?'
+  const {
+    routeNumber,
+    direction,
+    stopID
+  } = req.params
+  const path = `${baseUrl}r=${routeNumber}&d=${direction}&s=${stopID}`
+  const regexTimes = /(\d?:\d{2}\s*.{4})\s*TO\W?(\w|\s)*/gi
+  const regexLastUpdate = /\d{1,2}:\d{2}:\d{2}\s(?:PM|AM)\s\d{1,2}\/\d{1,2}\/\d{4}/g
+
+  pXray(path, 'div div', '@html')
+    .then(function fulfilled (result) {
+      console.log(result.match(regexTimes))
+      const arrivalTimes = result.match(regexTimes)
+      console.log(result.match(regexLastUpdate))
+      const lastUpdated = result.match(regexLastUpdate)
+
+    })
+
+  console.log(req.params)
+
+})
 
 export default router

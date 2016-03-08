@@ -1,14 +1,17 @@
 import { createStore, applyMiddleware } from 'redux'
 import { fromJS } from 'immutable'
 import { compose } from 'ramda'
+import { browserHistory } from 'react-router'
 
 import rootReducer from '../reducers/'
 
 // Middlewares
 import logger from 'redux-logger'
 import promiseMiddleware from 'redux-promise'
+import { routerMiddleware } from 'react-router-redux'
 
 const loggerMiddleware = logger()
+const router = routerMiddleware(browserHistory)
 
 //  localStorage
 import persistState from 'redux-localstorage'
@@ -31,6 +34,7 @@ export default function configureStore (initialState) {
     initialState,
     compose(
       applyMiddleware(
+        router,
         promiseMiddleware,
         loggerMiddleware
       ),

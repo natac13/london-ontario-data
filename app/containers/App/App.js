@@ -6,7 +6,6 @@ import * as ActionCreators from '../../actions'
 
 import axios from 'axios'
 
-import Search from '../../components/Search/'
 import Header from '../../components/Header/'
 
 import style from './style'
@@ -33,6 +32,12 @@ class App extends Component {
 
   render () {
     const { actions, navBtn } = this.props
+
+    const childrenWithStoreProps = React.Children.map(
+      this.props.children,
+      (child) => {
+        return React.cloneElement(child, { ...this.props })
+      })
     return (
       <div className={style.app}>
         <Header
@@ -40,8 +45,7 @@ class App extends Component {
           navOpen={actions.navOpen}
           navClose={actions.navClose}
           navBtn={navBtn} />
-        <Search className={style.search} {...this.props} />
-
+        {childrenWithStoreProps}
       </div>
     )
   }
@@ -51,7 +55,8 @@ App.propTypes = {
   actions: PropTypes.object,
   storage: ImmutablePropTypes.map,
   getStopIDMap: PropTypes.func,
-  navBtn: ImmutablePropTypes.map
+  navBtn: ImmutablePropTypes.map,
+  children: PropTypes.node
 }
 
 //  Redux Connection
