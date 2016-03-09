@@ -11,7 +11,7 @@ import Header from '../../components/Header/'
 import style from './style'
 
 class App extends Component {
-  componentWillMount () {
+  componentDidMount () {
     const {
       actions,
       storage
@@ -25,7 +25,7 @@ class App extends Component {
         if (!!filteredMap && filteredMap.size > 0) {
           actions.requestSuccess()
         } else {
-          setTimeout(() => actions.requestSuccess(), 500)
+          setTimeout(() => actions.requestSuccess(), 1000)
         }
       })
   }
