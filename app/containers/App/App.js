@@ -21,13 +21,17 @@ class App extends Component {
 
     actions.request()
     actions.createStopIDMap(axios.get('/api/all_stops'))
-      .then(() => {
-        if (!!filteredMap && filteredMap.size > 0) {
-          actions.requestSuccess()
-        } else {
-          setTimeout(() => actions.requestSuccess(), 1000)
-        }
-      })
+      .then(
+        function fulfilled () {
+          if (!!filteredMap && filteredMap.size > 0) {
+            actions.requestSuccess()
+          } else {
+            setTimeout(() => actions.requestSuccess(), 1000)
+          }
+        }, function rejected (err) {
+          console.log(err)
+          actions.requestFail()
+        })
   }
 
   render () {
@@ -66,12 +70,14 @@ function mapStateToProps (state) {
   const storage = state.get('storage')
   const asyncState = state.get('asyncState')
   const navBtn = state.get('navBtn')
+  const routeTimes = state.get('routeTimes')
   return {
     stopIDMap,
     directionMap,
     storage,
     asyncState,
-    navBtn
+    navBtn,
+    routeTimes
   }
 }
 

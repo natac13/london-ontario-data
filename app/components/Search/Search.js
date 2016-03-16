@@ -76,6 +76,8 @@ class Search extends Component {
       [className]: !!className
     })
 
+    const finalStopMap = filteredMap.size > 0 ? filteredMap : stopIDMap
+
     return (
       <div className={wrapperClass}>
         <form
@@ -100,7 +102,7 @@ class Search extends Component {
         {asyncState.get('success')
         ? <StopsList
           actions={actions}
-          stopsMap={filteredMap || stopIDMap}
+          stopsMap={finalStopMap}
           directionMap={directionMap} />
         : <ProgressBar type='circular' mode='indeterminate' />}
       </div>

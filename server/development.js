@@ -1,6 +1,7 @@
 import express from 'express'
 import path from 'path'
 import mongoose from 'mongoose'
+import morgan from 'morgan'
 mongoose.Promise = require('bluebird')
 
 require('dotenv').load()
@@ -37,6 +38,7 @@ import apiController from './controllers/api'
 import fetchController from './controllers/fetch'
 
 let app = express()
+app.use(morgan('combined'))
 app.use(webpackMiddleware(compiler, webpackOptions))
 app.use(webpackHotMiddleware(compiler))
 
@@ -52,3 +54,4 @@ app.use('/stop', stopController)
 app.listen(port, 'localhost', () => {
   console.log('Listening on Port ' + port)
 })
+export default app

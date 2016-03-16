@@ -7,6 +7,7 @@ import {
 const initialState = Map({
   isOpen: false
 })
+
 function navBtn (state = initialState, action) {
   switch (action.type) {
     case NAV_OPEN:

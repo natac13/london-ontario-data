@@ -1,5 +1,5 @@
 import Promise from 'bluebird'
-import { indexOf, slice, take } from 'ramda'
+import { indexOf, slice, take, split, remove, join, compose } from 'ramda'
 import { capitalizeEachWord } from '../../app/js/format'
 import xRay from 'x-ray'
 const xray = xRay()
@@ -60,10 +60,33 @@ function pXray (url, scope, selector) {
     })
   })
 }
+/**
+ * fn :: string -> string
+ */
+const removeThree = compose(join(''), remove(0, 3))
+
+/**
+ * fn :: string -> object
+ * Will split the given string on more than 2 spaces. '9:50 P.M.   TO Downtown'
+ * Then return an object that has a property, time unformatted due to Date and
+ * moment not recognizing it. Second property is the destination with the TO
+ * part removed form a nicer endpoint response
+ * @param  {string} arrivalString
+ * @return {object}
+ */
+function transformArrivalTime (arrivalString) {
+  const re = /\s{2,}/
+  const [ time, destination ] = split(re, arrivalString)
+  return {
+    time,
+    destination: removeThree(destination)
+  }
+}
 
 export {
   convertStopData,
   convertRouteData,
   pXray,
-  dropLastThree
+  dropLastThree,
+  transformArrivalTime
 }

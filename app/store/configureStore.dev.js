@@ -16,13 +16,41 @@ const router = routerMiddleware(browserHistory)
 //  localStorage
 import persistState from 'redux-localstorage'
 
+function serialize (collection) {
+  try {
+    // if the collection is a immutable data structure returned the serialized
+    // version
+    return JSON.stringify(collection.toJS())
+  } catch (err) {
+    return null
+  }
+}
+
+function deserialize (string) {
+  console.log('deserialize')
+  console.log(string)
+  const data = JSON.parse(string)
+  console.log(data)
+  if (data) {
+    return fromJS(data)
+  } else {
+    return data
+  }
+}
+
 const storagePaths = ['storage', 'filteredMap']
 const storageConfig = {
   slicer: (paths) => (state) => state.getIn(paths),
-  serialize: (collection) => JSON.stringify(collection.toJS()),
-  deserialize: (string) => fromJS(JSON.parse(string)),
+  serialize,
+  deserialize,
   merge: (initial, persistent) => {
-    return initial.setIn(['storage', 'filteredMap'], persistent)
+    console.log(persistent)
+    console.log('merge')
+    if (persistent) {
+      return initial.setIn(['storage', 'filteredMap'], persistent)
+    } else {
+      return initial
+    }
   }
 }
 

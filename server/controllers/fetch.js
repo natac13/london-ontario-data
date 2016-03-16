@@ -1,11 +1,13 @@
 import express from 'express'
 import xRay from 'x-ray'
 import { map } from 'ramda'
+import moment from 'moment'
 import Promise from 'bluebird'
 import {
   pXray,
   convertRouteData,
-  dropLastThree
+  dropLastThree,
+  transformArrivalTime
 } from './helpers'
 
 import Route from '../models/route'
@@ -69,29 +71,49 @@ router.get('/routes', function getHandler (req, res) {
     console.log(err)
   })
 })
+
 const timeRoute = '/times/:routeNumber/:direction/:stopID'
-router.get(timeRoute, function getHandler (req, res) {
+router.get(timeRoute, async function getHandler (req, res) {
   const baseUrl = 'http://www.ltconline.ca/webwatch/MobileAda.aspx?'
   const {
     routeNumber,
     direction,
     stopID
   } = req.params
+
+  // the LTC url to srcap from
   const path = `${baseUrl}r=${routeNumber}&d=${direction}&s=${stopID}`
+
+  // regex expressions to get arrivalTimes and the lastUpdated time.
   const regexTimes = /(\d?:\d{2}\s*.{4})\s*TO\W?(\w|\s)*/gi
   const regexLastUpdate = /\d{1,2}:\d{2}:\d{2}\s(?:PM|AM)\s\d{1,2}\/\d{1,2}\/\d{4}/g
 
-  pXray(path, 'div div', '@html')
-    .then(function fulfilled (result) {
-      console.log(result.match(regexTimes))
-      const arrivalTimes = result.match(regexTimes)
-      console.log(result.match(regexLastUpdate))
-      const lastUpdated = result.match(regexLastUpdate)
+  try {
+    // asynchronous Data fetching
+    const scrappedData = await pXray(path, 'div div', '@html')
 
-    })
+    // find the arrivalTimes list and make a nicely formatted date
+    const arrivalTimes = scrappedData.match(regexTimes)
+    const badDate = new Date(scrappedData.match(regexLastUpdate))
+    const niceDate = moment(badDate).format('MMMM Do, YYYY hh:mm:ss A')
+    // Object to send to the client
+    const result = {
+      lastUpdated: niceDate,
+      arrivalTimes: map(transformArrivalTime, arrivalTimes)
+    }
 
-  console.log(req.params)
-
+    // handle the response itself
+    res.status(200)
+    res.json(result)
+  } catch (err) {
+    // Create an nice error message.
+    const error = {
+      message: 'Error getting the route times from LTC site',
+      _error: err
+    }
+    res.status(500)
+    res.json(error)
+  }
 })
 
 export default router
