@@ -58,12 +58,10 @@ router.get('/routes/:id', async function getHandler (req, res) {
 router.get('/all_stops', function getHandler (req, res) {
   const query = {}
   const projection = { '_id': false, '__v': false }
-  const options = { lean: true }
 
   // create a stream of the over 3000 records
-  const stream = Stop.find(query, projection, options).stream()
+  const stream = Stop.find(query, projection).stream()
   const result = []
-
   // push to an array
   stream.on('data', (doc) => {
     result.push(doc)

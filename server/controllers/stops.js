@@ -20,7 +20,7 @@ stopRouter.get('/', function handleHome (req, res) {
       link: '@href'
     }]
   )(function handleXrayResult (err, result) {
-    if (!!err) {
+    if (err) {
       res.json({
         message: 'Error with xray',
         _error: err

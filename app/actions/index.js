@@ -1,6 +1,7 @@
 export * from './initialData'
 export * from './storage'
 export * from './navBtn'
+export * from './routeTime'
 
 export {
   request,

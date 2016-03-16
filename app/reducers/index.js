@@ -8,6 +8,7 @@ import storage from './storage'
 import asyncState from 'redux-async-state-reducer'
 import routing from './routing'
 import navBtn from './navBtn'
+import routeTimes from './routeTimes'
 
 const rootReducer = combineReducers(mergeAll([
   {},
@@ -15,7 +16,8 @@ const rootReducer = combineReducers(mergeAll([
     initialData,
     storage,
     asyncState,
-    navBtn
+    navBtn,
+    routeTimes
   },
   {
     routing,

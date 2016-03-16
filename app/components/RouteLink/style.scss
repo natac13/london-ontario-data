@@ -24,12 +24,13 @@
   text-shadow: 1px 1px 5px darken($palette-amber-900, 15%),
              -1px -1px 5px darken($palette-amber-900, 15%);
   color: $palette-amber-800;
+  cursor: pointer;
   text-transform: uppercase;
   margin-bottom: .25rem;
   border-top-left-radius: 25%;
   border-top-right-radius: 25%;
-  border-bottom-left-radius: 5%;
-  border-bottom-right-radius: 5%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
    @media (min-width:20em) {
     /* smartphones, iPhone, portrait 480x320 phones */
