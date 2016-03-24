@@ -61,6 +61,7 @@ function Search (props) {
           type='submit'
           disabled={submitting} />
       </form>
+      <p className={style.instruction}>Click on a route to see the times</p>
       {asyncState.get('success')
       ? <StopsList
         actions={actions}

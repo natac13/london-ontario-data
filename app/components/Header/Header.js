@@ -17,7 +17,7 @@ function Header (props) {
     <nav className={style.navBar}>
       <header className={wrapperClass}>
         <h1 className={style.title}>
-          <span className={style.ltc}>LTC</span> Webwatch
+          <span className={style.ltc}>London</span> TransitHawk
         </h1>
       </header>
       <NavButton
