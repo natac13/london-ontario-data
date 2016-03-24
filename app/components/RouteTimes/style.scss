@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+}
+
+.title {
+  font-size: ms(2);
+  text-transform: uppercase;
+  color: $color-dark;
+}
+
+.arrivalTimes {
+  box-shadow: inset 0 0 15px 1px $shadow;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: ms(0);
+}
+
+.arrivalTime {
+
+  strong {
+    font-weight: 700;
+    font-style: normal;
+  }
+}
+
+.lastUpdated {
+
+  strong {
+    font-style: italic;
+    font-weight: 400;
+  }
+}
