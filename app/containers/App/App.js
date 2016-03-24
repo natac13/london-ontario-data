@@ -28,7 +28,9 @@ class App extends Component {
           } else {
             setTimeout(() => actions.requestSuccess(), 1000)
           }
-        }, function rejected (err) {
+        },
+        function rejected (err) {
+          // should better deal with no stopIDMap making it back from database
           console.log(err)
           actions.requestFail()
         })
@@ -57,27 +59,20 @@ class App extends Component {
 
 App.propTypes = {
   actions: PropTypes.object,
-  storage: ImmutablePropTypes.map,
   getStopIDMap: PropTypes.func,
-  navBtn: ImmutablePropTypes.map,
-  children: PropTypes.node
+  children: PropTypes.node,
+  storage: ImmutablePropTypes.map,
+  navBtn: ImmutablePropTypes.map
 }
 
 //  Redux Connection
 function mapStateToProps (state) {
-  const stopIDMap = state.getIn(['initialData', 'stopIDMap'])
-  const directionMap = state.getIn(['initialData', 'directionMap'])
-  const storage = state.get('storage')
-  const asyncState = state.get('asyncState')
-  const navBtn = state.get('navBtn')
-  const routeTimes = state.get('routeTimes')
   return {
-    stopIDMap,
-    directionMap,
-    storage,
-    asyncState,
-    navBtn,
-    routeTimes
+    stopIDMap: state.getIn(['initialData', 'stopIDMap']),
+    storage: state.get('storage'),
+    asyncState: state.get('asyncState'),
+    navBtn: state.get('navBtn'),
+    routeTimes: state.get('routeTimes')
   }
 }
 

@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-top: 5rem;
+  align-items: center;
+}
+
+.backBtn {
+  position: relative;
+  border: 3px solid $color-dark;
+  border-radius: 0;
+  margin-top: .5em;
+  align-self: baseline;
+  transition: .3s linear;
+
+  &:hover {
+    background: $color-light;
+  }
+
+
+  & > span:first-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    span {
+      color: $color-dark;
+      transition: .4 ease-in-out;
+    }
+  }
+
+  [data-react-toolbox="ripple"] {
+    border-radius: 0;
+  }
+}

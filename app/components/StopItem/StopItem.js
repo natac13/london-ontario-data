@@ -4,18 +4,21 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import Icon from 'react-fa'
 import RouteLink from '../RouteLink'
 
-import style from './style'
+import style from './style.scss'
 
-const StopItem = (props) => {
+function StopItem (props) {
   const {
     routes,
     stopKey,
     actions
   } = props
 
-  const routelist = routes.sortBy((route) => route.get('route')).map((route) => {
+  // taking the route and sorting by route number, I call toArray() as to
+  // map over the collection to produce an array of components to render
+  const routelist = routes.sortBy((route) => route.get('route')).toArray().map((route) => {
     return (
       <RouteLink
+        key={route}
         actions={actions}
         route={route}
         stopKey={stopKey} />

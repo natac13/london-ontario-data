@@ -7,7 +7,7 @@ import R from 'ramda'
  * @param  {[type]} routeID [description]
  * @return {[type]}         [description]
  */
-export const getNameFromMatchedObject = (routeID) => {
+function getNameFromMatchedObject (routeID) {
   return R.compose(R.prop('name'), R.find(R.propEq('ID', routeID)))
 }
 
@@ -20,7 +20,7 @@ export const getNameFromMatchedObject = (routeID) => {
  * @param  {array} data
  * @return {Immutable Map}
  */
-export const createBusStopsMap = (data) => {
+function createBusStopsMap (data) {
   return data.reduce((acc, obj) => {
     if (!acc.has(obj.stop)) {
       return acc.set(obj.stop, fromJS([{
@@ -45,7 +45,7 @@ export const createBusStopsMap = (data) => {
  * @param [Number]
  * @return [Number]
  */
-export const getNumberLength = R.compose(R.length, R.toString)
+const getNumberLength = R.compose(R.length, R.toString)
 
 /**
  * busStopsFilter :: Map a -> Number b -> Map a
@@ -56,23 +56,25 @@ export const getNumberLength = R.compose(R.length, R.toString)
  * @param  {Number} userInput
  * @return {Map}
  */
-export const busStopsFilter = (stopsMap, userInput = '') => {
+function busStopsFilter (stopsMap, userInput = '') {
   return stopsMap.filter((routeList, stop) => {
     const trimmedStopId = R.take(R.length(userInput), stop)
     return trimmedStopId === userInput
   })
 }
 
-/*
-MAY NOT NEED
-NO USE AT THE MOMENT
-using filteredMap || stopIDMap
-working find
- */
-export const findStartingMap = (stopIDMap, filteredMap = Map(), dirty = false) => {
-  if (filteredMap.size > 0 && !dirty) {
+function findStartingMap (stopIDMap, filteredMap = Map()) {
+  if (filteredMap.size > 0) {
     return filteredMap
   } else {
     return stopIDMap
   }
+}
+
+export {
+  findStartingMap,
+  busStopsFilter,
+  getNumberLength,
+  createBusStopsMap,
+  getNameFromMatchedObject
 }

@@ -1,49 +1,45 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import axios from 'axios'
+import classnames from 'classnames'
 
-import ProgressBar from 'react-toolbox/lib/progress_bar'
+import style from './style.scss'
 
-import style from './style'
+function RouteTimes (props) {
+  const {
+    lastUpdated,
+    arrivalTimes,
+    stopID
+  } = props
 
-class RouteTimes extends Component {
-  constructor (props) {
-    super(props)
-    console.log(props)
-    // on props.paras.query I will find the url to search.
-  }
-
-  componentWillMount () {
-    const {
-      routeNumber,
-      direction,
-      stopID
-    } = this.props.params
-    const { actions } = this.props
-    actions.request()
-    actions.routeTimeFetch(axios.get(`/fetch/times/${routeNumber}/${direction}/${stopID}`))
-      .then(function fulfilled () {
-        actions.requestSuccess()
-      })
-  }
-
-  render () {
-    const { asyncState } = this.props
-    return (
-      <div className={style.wrapper}>
-        {asyncState.get('success')
-        ? <p>Got route Times!</p>
-        : <ProgressBar type='circular' mode='indeterminate' />}
+  const wrapperClass = classnames({
+    [style.wrapper]: true,
+    [props.className]: !!props.className
+  })
+  const arrivalTimeComponents = arrivalTimes.map((arrival, index) => (
+    <p className={style.arrivalTime} key={index}>
+      Arriving @ <strong>{arrival.get('time')}</strong> to {arrival.get('destination')}
+    </p>
+  ))
+  return (
+    <section className={wrapperClass}>
+      <h3 className={style.title}>
+        Next 3 buses: stop #{stopID}
+      </h3>
+      <div className={style.arrivalTimes}>
+       {arrivalTimeComponents}
       </div>
-    )
-  }
+      <p className={style.lastUpdated}>
+        Times last updated: <strong>{lastUpdated}</strong>
+      </p>
+    </section>
+  )
 }
 
 RouteTimes.propTypes = {
   className: PropTypes.string,
-  params: PropTypes.object,
-  actions: PropTypes.object,
-  asyncState: ImmutablePropTypes.map
+  lastUpdated: PropTypes.string,
+  arrivalTimes: ImmutablePropTypes.list,
+  stopID: PropTypes.string
 }
 
 export default RouteTimes

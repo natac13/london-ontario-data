@@ -7,8 +7,6 @@ const initialState = fromJS({
 })
 
 function routeTimes (state = initialState, action) {
-  console.log(action.payload
-    )
   switch (action.type) {
     case TIMES_FETCH:
       return state.merge(fromJS(action.payload.data))

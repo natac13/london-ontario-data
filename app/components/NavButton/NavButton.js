@@ -10,7 +10,7 @@ import style from './style'
 
 function NavButton (props) {
   const { className, navOpen, navClose, navBtn } = props
-  const isOpen = navBtn.get('isOpen')
+  const isOpen = navBtn.get('isOpen') // flag for the dialog
 
   const buttonClass = classnames({
     [style.hamburger]: true,
