@@ -6,7 +6,7 @@ import StopItem from '../StopItem'
 
 import style from './style'
 
-const StopsList = (props) => {
+function StopsList (props) {
   const {
     stopsMap,
     actions

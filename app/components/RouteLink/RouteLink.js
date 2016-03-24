@@ -1,24 +1,24 @@
 import React, { PropTypes } from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { curry } from 'ramda'
+import { withProps } from 'recompose'
 
+// these are inject with the 'withProps function'
 import findDirection from '../../js/findDirection'
 import directionMap from '../../constants/directionMap'
 
 import Icon from 'react-fa'
 
-import style from './style'
+import style from './style.scss'
 
 function RouteLink (props) {
   const {
     route,
-    stopKey
+    stopKey,
+    actions: { push }, // nested destructuring
+    findDirection,
+    directionMap
   } = props
-
-  const handleClick = curry(function (routeNumber, direction, stopKey, event) {
-    event.preventDefault()
-    props.actions.push(`/routeTimes/${routeNumber}/${direction}/${stopKey}`)
-  })
 
   const routeNumber = route.get('route')
   const name = route.get('name')
@@ -29,7 +29,7 @@ function RouteLink (props) {
     <a
       key={routeNumber}
       className={style.route}
-      onClick={handleClick(routeNumber, direction, stopKey)} >
+      onClick={handleClick(routeNumber, direction, stopKey, push)} >
       <span className={style.routeNumber}>
         {routeNumber}
       </span>
@@ -46,9 +46,19 @@ function RouteLink (props) {
 }
 
 RouteLink.propTypes = {
-  route: ImmutablePropTypes.map,
-  stopKey: PropTypes.string,
-  actions: PropTypes.object
+  route: ImmutablePropTypes.map.isRequried,
+  stopKey: PropTypes.string.isRequired,
+  actions: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequried,
+  findDirection: PropTypes.func.isRequired,
+  directionMap: ImmutablePropTypes.map.isRequired
 }
 
-export default RouteLink
+const handleClick = curry((routeNumber, direction, stopKey, push, event) => {
+  event.preventDefault()
+  push(`/routeTimes/${routeNumber}/${direction}/${stopKey}`)
+})
+
+export default withProps(
+  { handleClick, findDirection, directionMap }
+)(RouteLink)
