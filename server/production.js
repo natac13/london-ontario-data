@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URI)
     throw error
   })
 
-import stopController from './controllers/stops'
+// import stopController from './controllers/stops'
 import apiController from './controllers/api'
 import fetchController from './controllers/fetch'
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, '../build')))
 const port = process.env.PORT || 3087
 app.use('/api', apiController)
 app.use('/fetch', fetchController)
-app.use('/stop', stopController)
+// app.use('/stop', stopController)
 
 app.listen(port, () => {
   console.log('Listening on Port ' + port)

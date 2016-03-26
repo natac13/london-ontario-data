@@ -33,12 +33,12 @@ mongoose.connect(process.env.MONGO_DEV)
     throw error
   })
 
-import stopController from './controllers/stops'
+// import stopController from './controllers/stops'
 import apiController from './controllers/api'
 import fetchController from './controllers/fetch'
 
 let app = express()
-app.use(morgan('combined'))
+app.use(morgan('dev'))
 app.use(webpackMiddleware(compiler, webpackOptions))
 app.use(webpackHotMiddleware(compiler))
 
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'))
 })
 
-app.use('/stop', stopController)
+// app.use('/stop', stopController)
 
 app.listen(port, 'localhost', () => {
   console.log('Listening on Port ' + port)

@@ -31,46 +31,46 @@ I have forked the repo and made this change on my version. However this app
 does not point to my version of xray at this time.
 */
 
-router.get('/routes', function getHandler (req, res) {
-  pXray('http://www.ltconline.ca/webwatch/MobileADA.aspx', 'a',
-      [{
-        link: '@href',
-        name: '@html',
-        directionLinks: x('@href', ['a@href']) // navigates the link and scraps
-      }])
-  .then(
-    function fullfill (result) {
-      // take the result from xray and covert it into the form I want
-      const data = convertListOfData(dropLastThree(result))
-      res.json(data)
-      return data
-    },
-    function rejected (err) {
-      const error = {
-        message: 'There was an error with xray scrapping the data.',
-        _error: err
-      }
-      res.json(error)
-      return err
-    })
-  .then(function fullfillApi (data) {
-    // create an array of promise to send to promise.all by mapping over the
-    // data list of routes
-    const dataPromises = data.map((route) => {
-      const query = { 'ID': route.ID }
-      const options = { upsert: true } // will create new if doesn't exist
-      return Route.findOneAndUpdate(query, route, options)
-    })
-    return Promise.all(dataPromises) // return after all have resolved.
-  })
-  .then(function fullfillDB (docs) {
-    // docs is an arrray of the docs even if they were not updated.
-    console.log('Routes have been add/updated on MongoDB')
-  })
-  .catch(function cleanUp (err) {
-    console.log(err)
-  })
-})
+// router.get('/routes', function getHandler (req, res) {
+//   pXray('http://www.ltconline.ca/webwatch/MobileADA.aspx', 'a',
+//       [{
+//         link: '@href',
+//         name: '@html',
+//         directionLinks: x('@href', ['a@href']) // navigates the link and scraps
+//       }])
+//   .then(
+//     function fullfill (result) {
+//       // take the result from xray and covert it into the form I want
+//       const data = convertListOfData(dropLastThree(result))
+//       res.json(data)
+//       return data
+//     },
+//     function rejected (err) {
+//       const error = {
+//         message: 'There was an error with xray scrapping the data.',
+//         _error: err
+//       }
+//       res.json(error)
+//       return err
+//     })
+//   .then(function fullfillApi (data) {
+//     // create an array of promise to send to promise.all by mapping over the
+//     // data list of routes
+//     const dataPromises = data.map((route) => {
+//       const query = { 'ID': route.ID }
+//       const options = { upsert: true } // will create new if doesn't exist
+//       return Route.findOneAndUpdate(query, route, options)
+//     })
+//     return Promise.all(dataPromises) // return after all have resolved.
+//   })
+//   .then(function fullfillDB (docs) {
+//     // docs is an arrray of the docs even if they were not updated.
+//     console.log('Routes have been add/updated on MongoDB')
+//   })
+//   .catch(function cleanUp (err) {
+//     console.log(err)
+//   })
+// })
 
 const timeRoute = '/times/:routeNumber/:direction/:stopID'
 router.get(timeRoute, async function getHandler (req, res) {
