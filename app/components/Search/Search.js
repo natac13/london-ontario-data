@@ -50,6 +50,7 @@ function Search (props) {
           className={style.search}
           placeholder='Enter Stop ID Here'
           error={error}
+          required
           name='searchStop'
           type='text'
           { ...stopID } />

@@ -57,9 +57,9 @@ const getNumberLength = R.compose(R.length, R.toString)
  * @return {Map}
  */
 function busStopsFilter (stopsMap, userInput = '') {
+  if (userInput === '') { return stopsMap }
   return stopsMap.filter((routeList, stop) => {
-    const trimmedStopId = R.take(R.length(userInput), stop)
-    return trimmedStopId === userInput
+    return stop === userInput
   })
 }
 

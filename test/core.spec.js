@@ -30,12 +30,12 @@ describe('Creating the stopsMap. Mapping bus stops to a list of {route direction
 describe('busStopsFilter', () => {
   it('should take in a stopsMap and a userInput to return a new stopsMap, which has been filtered based off userInput', () => {
     const stopsMap = createBusStopsMap(data)
-    const userInput = '16'
+    const userInput = '1644'
     const filteredBusStops = busStopsFilter(stopsMap, userInput)
     expect(filteredBusStops).to.be.instanceof(Map)
     expect(filteredBusStops.has('1644')).to.be.true
     expect(filteredBusStops.get('1644')).to.be.instanceof(List)
-    expect(filteredBusStops.size).to.equal(4)
+    expect(filteredBusStops.size).to.equal(1)
   })
 
   it('should take in a full stopID and return the one busStop routeList', () => {
